@@ -1,0 +1,6 @@
+# Project dev files
+/vendor/
+/node_modules/
+
+# Project build folder
+/build/
