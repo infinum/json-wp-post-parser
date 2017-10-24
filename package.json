@@ -14,9 +14,8 @@
     "babel-eslint": "^7.2.3",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.0",
-    "clean-webpack-plugin": "^0.1.16",
-    "copy-webpack-plugin": "^4.2.0",
     "eslint": "^4.5.0",
+    "filemanager-webpack-plugin": "^1.0.8",
     "node-sass": "^4.5.3",
     "uglifyjs-webpack-plugin": "^0.4.6",
     "webpack": "^3.5.5"
