@@ -18,7 +18,7 @@ const ajax = {
       data: ajaxData,
       beforeSend: (xhr) => {
         $notifElement.html('');
-        $notifElement.append('<div>Processing...</div>');
+        $notifElement.append(`<div>${wpApiSettings.processing}</div>`);
         xhr.setRequestHeader('X-WP-Nonce', wpApiSettings.nonce);
       }
     })

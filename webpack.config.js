@@ -1,9 +1,8 @@
-const DEV = process.env.NODE_ENV !== 'production';
-
 const path = require('path');
 
 const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 const appPath = `${path.resolve(__dirname)}`;
@@ -34,28 +33,30 @@ const allModules = {
 };
 
 const allPlugins = [
-  new CleanWebpackPlugin([output]),
+  // new CleanWebpackPlugin([output]),
   new webpack.optimize.ModuleConcatenationPlugin(),
-  new webpack.DefinePlugin({
-    'process.env': {
-      NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development')
+  new UglifyJSPlugin({
+    comments: false,
+    sourceMap: true
+  }),
+  new CopyWebpackPlugin([
+    {
+      from: '/src/*',
+      to: '/build/json-wp-post-parser',
     }
+  ], {
+    ignore: [
+      '/src/skin/assets/*'
+    ]
   })
 ];
-
-// Use only for production build
-if (!DEV) {
-  allPlugins.push(
-    new UglifyJSPlugin({
-      comments: false,
-      sourceMap: true
-    })
-  );
-}
 
 module.exports = [
   {
     context: path.join(__dirname),
+    devServer: {
+      outputPath: path.join(__dirname, 'build')
+    },
     entry: {
       application: [pluginEntry],
     },

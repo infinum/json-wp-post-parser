@@ -7,8 +7,7 @@
   "main": "",
   "scripts": {
     "precommit": "npm run eslint src/admin/assets/js/",
-    "start": "webpack --progress --watch --display-error-details --display-modules --display-reasons",
-    "build": "NODE_ENV=production webpack --progress"
+    "build": "webpack --progress"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -16,6 +15,7 @@
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.0",
     "clean-webpack-plugin": "^0.1.16",
+    "copy-webpack-plugin": "^4.2.0",
     "eslint": "^4.5.0",
     "node-sass": "^4.5.3",
     "uglifyjs-webpack-plugin": "^0.4.6",

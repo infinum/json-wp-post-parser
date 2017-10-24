@@ -23,16 +23,10 @@ composer install
 vendor/bin/phpcs --config-set installed_paths ../../wp-coding-standards/wpcs
 ```
 
-### Development
-
-```sh
-npm start
-```
-
 ### Build
 
 ```sh
-npm build
+npm run build
 ```
 
 ### Unit tests

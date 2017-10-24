@@ -205,10 +205,11 @@ class Json_Post_Parser_Admin {
    */
   public function enqueue_scripts( $hook ) {
     if ( $hook === 'settings_page_json_parser_posts' ) {
-      wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'assets/js/json-parser.js', array( 'jquery' ), $this->version, false );
+      wp_enqueue_script( $this->plugin_name, plugins_url() . '/' . $this->plugin_name . '/skin/public/scripts/application.js', array( '' ), $this->version, false );
       wp_localize_script( $this->plugin_name, 'wpApiSettings', array(
-          'root' => esc_url_raw( rest_url() ),
-          'nonce' => wp_create_nonce( 'wp_rest' ),
+          'root'       => esc_url_raw( rest_url() ),
+          'nonce'      => wp_create_nonce( 'wp_rest' ),
+          'processing' => esc_html__( 'Processing...', 'json-post-parser' ),
       ) );
     }
   }
