@@ -7,10 +7,9 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const appPath = `${path.resolve(__dirname)}`;
 
 // Entry
-const pluginPath = `/src/skin`;
+const pluginPath = '/src/skin';
 const pluginFullPath = `${appPath}${pluginPath}`;
 const pluginEntry = `${pluginFullPath}/assets/application.js`;
-const pluginAdminEntry = `${pluginFullPath}/assets/scripts/scriptsAdmin.js`;
 const pluginPublicPath = `${appPath}/build/`;
 
 // Outputs
@@ -37,22 +36,30 @@ const allPlugins = [
     sourceMap: true
   }),
   new FileManagerPlugin({
-    onStart: {
-      copy: [
-        {source: './src', destination: './build/json-wp-post-parser/'}
-      ],
-      delete: [
-        './build'
-      ]
-    },
-    onEnd: {
-      copy: [
-        {source: './build/scripts', destination: './build/json-wp-post-parser/assets/scripts'}
-      ],
-      delete: [
-        './build/json-wp-post-parser/skin'
-      ]
-    }
+    onStart: [
+      {
+        delete: [
+          './build'
+        ]
+      },
+      {
+        copy: [
+          {source: './src', destination: './build/json-wp-post-parser/'}
+        ]
+      }
+    ],
+    onEnd: [
+      {
+        copy: [
+          {source: './build/scripts/application.js', destination: './build/json-wp-post-parser/assets/scripts/application.js'}
+        ]
+      },
+      {
+        delete: [
+          './build/json-wp-post-parser/skin'
+        ]
+      }
+    ]
   })
 ];
 
