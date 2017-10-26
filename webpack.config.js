@@ -51,12 +51,13 @@ const allPlugins = [
     onEnd: [
       {
         copy: [
-          {source: './build/scripts/application.js', destination: './build/json-wp-post-parser/assets/scripts/application.js'}
+          {source: './build/scripts', destination: './build/json-wp-post-parser/assets/scripts'}
         ]
       },
       {
         delete: [
-          './build/json-wp-post-parser/skin'
+          './build/json-wp-post-parser/skin',
+          './build/scripts'
         ]
       }
     ]
