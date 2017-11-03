@@ -9,6 +9,8 @@
  * @subpackage Json_WP_Post_Parser/admin
  */
 
+namespace Json_WP_Post_Parser\Admin;
+
 /**
  * The admin-specific functionality of the plugin.
  *
@@ -71,6 +73,7 @@ class Json_WP_Post_Parser_Admin {
    */
   public function render_parse_posts_page() {
     $post_types = array( 'post', 'page' );
+
     if ( has_filter( 'json_wp_post_parser_add_post_types' ) ) {
       $post_types = apply_filters( 'json_wp_post_parser_add_post_types', $post_types );
     }
@@ -81,7 +84,7 @@ class Json_WP_Post_Parser_Admin {
         'posts_per_page' => 5000,
     );
 
-    $all_posts = new WP_Query( $all_posts_args );
+    $all_posts = new \WP_Query( $all_posts_args );
     $posts_array = [];
 
     if ( $all_posts->have_posts() ) {
@@ -99,102 +102,6 @@ class Json_WP_Post_Parser_Admin {
       <button class="button button-primary js-start-post-resave"><?php esc_html_e( 'Start resaving', 'json-wp-post-parser' ); ?></button>
     </div>
     <?php
-  }
-
-  /**
-   * Parse post content and store it in the custom table
-   *
-   * @param int    $post_id Post ID.
-   * @param object $post    Post object.
-   * @param bool   $update  Whether this is an existing post being updated or not.
-   * @since 1.0.0
-   */
-  public function parse_content_to_json( $post_id, $post, $update ) {
-    error_log( print_r( $post_id, true ) );
-    error_log( print_r( $post, true ) );
-    error_log( print_r( $update, true ) );
-    if ( $update ) { // Trigger only on post save or update, not on new post.
-      global $wpdb;
-
-      // Remove newlines. If we don't do this, json has tons of empty texts that notify the newlines.
-      $post_content_lines = str_replace( array( "\r\n", "\r" ), "\n", apply_filters( 'the_content', $post->post_content ) );
-
-      $lines = explode( "\n", $post_content_lines );
-      $new_lines = array();
-
-      foreach ( $lines as $i => $line ) {
-        if ( ! empty( $line ) ) {
-          $new_lines[] = trim( $line );
-        }
-      }
-
-      $post_content = implode( $new_lines );
-
-      $post_dom = new DOMDocument();
-      $post_dom->loadHTML( $post_content );
-
-      $dom_json = wp_json_encode( $this->element_to_obj( $post_dom->documentElement ) );
-
-      $wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET post_content_json = %s WHERE ID = %d", $dom_json, $post_id ) );
-    }
-  }
-
-  /**
-   * Traverse through post html to create a post JSON
-   *
-   * @param  object $element Post dom element.
-   * @return string          Post as JSON.
-   */
-  public function element_to_obj( $element ) {
-    // Document element doesn't like comments so we treat them separately.
-    if ( $element->nodeType === XML_ELEMENT_NODE && $element->nodeName !== '#comment' ) {
-      // Get all the html object tag names. E.g. div, h2, code etc.
-      $node = $this->check_node_type( $element->nodeType );
-
-      $obj = array(
-          'node' => $node,
-          'tag'  => $element->tagName,
-      );
-
-      // Check the attributes, if there are any.
-      foreach ( $element->attributes as $attribute ) {
-        $obj['attr'][ $attribute->name ] = $attribute->value;
-      }
-
-      foreach ( $element->childNodes as $sub_element ) { // Child nodes.
-        $obj['child'][] = $this->element_to_obj( $sub_element );
-      }
-    } elseif ( $element->nodeType === XML_TEXT_NODE ) {
-      $obj['node'] = 'text';
-      $obj['text'] = $element->wholeText;
-    } else {
-      $obj['tag']  = 'html-comment-tag';
-      $obj['html'] = $element->nodeValue;
-    }
-
-    return $obj;
-  }
-
-  /**
-   * Check node type
-   *
-   * @param  int $node_type Node type number.
-   * @return string         Type of node.
-   */
-  public function check_node_type( $node_type ) {
-    switch ( $node_type ) {
-      case XML_ELEMENT_NODE:
-        $node_type = 'element';
-      break;
-      case XML_TEXT_NODE:
-        $node_type = 'text';
-      break;
-      default:
-        $node_type = 'element';
-      break;
-    }
-
-    return $node_type;
   }
 
   /**

@@ -12,6 +12,9 @@
  * @subpackage Json_WP_Post_Parser/includes
  */
 
+namespace Json_WP_Post_Parser\Includes;
+use Json_WP_Post_Parser\Admin;
+
 /**
  * The core plugin class.
  *
@@ -66,13 +69,17 @@ class Json_WP_Post_Parser {
    * @since    1.0.0
    */
   public function __construct() {
-    if ( defined( 'PLUGIN_NAME_VERSION' ) ) {
-      $this->version = PLUGIN_NAME_VERSION;
+    if ( defined( 'JWPP_PLUGIN_VERSION' ) ) {
+      $this->version = JWPP_PLUGIN_VERSION;
     } else {
       $this->version = '1.0.0';
     }
 
-    $this->plugin_name = 'json-wp-post-parser';
+    if ( defined( 'JWPP_PLUGIN_NAME' ) ) {
+      $this->plugin_name = JWPP_PLUGIN_NAME;
+    } else {
+      $this->plugin_name = 'json-wp-post-parser';
+    }
 
     $this->load_dependencies();
     $this->set_locale();
@@ -88,6 +95,8 @@ class Json_WP_Post_Parser {
    * - Json_WP_Post_Parser_Loader. Orchestrates the hooks of the plugin.
    * - Json_WP_Post_Parser_i18n. Defines internationalization functionality.
    * - Json_WP_Post_Parser_Admin. Defines all hooks for the admin area.
+   * - Json_WP_Post_Parser_Rest. Defines all REST functionality.
+   * - Json_WP_Post_Parser_Parse. Defines all the parsing functionality.
    *
    * Create an instance of the loader which will be used to register the hooks
    * with WordPress.
@@ -112,6 +121,11 @@ class Json_WP_Post_Parser {
      * The class responsible for defining all actions that occur in the admin area.
      */
     require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-json-wp-post-parser-admin.php';
+
+    /**
+     * The class responsible for parsing post content.
+     */
+    require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-json-wp-post-parser-parse.php';
 
     /**
      * The class responsible for REST architecture.
@@ -144,9 +158,10 @@ class Json_WP_Post_Parser {
    * @access   private
    */
   private function define_admin_hooks() {
-    $plugin_admin = new Json_WP_Post_Parser_Admin( $this->get_plugin_name(), $this->get_version() );
+    $plugin_admin = new Admin\Json_WP_Post_Parser_Admin( $this->get_plugin_name(), $this->get_version() );
+    $plugin_parse = new Admin\Json_WP_Post_Parser_Parse( $this->get_plugin_name(), $this->get_version() );
 
-    $this->loader->add_action( 'save_post', $plugin_admin, 'parse_content_to_json' );
+    $this->loader->add_action( 'save_post', $plugin_parse, 'update_post_json_content', 10, 3 );
     $this->loader->add_action( 'admin_menu', $plugin_admin, 'add_posts_parse_page' );
     $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
   }
@@ -158,7 +173,7 @@ class Json_WP_Post_Parser {
    * @access   private
    */
   private function register_rest_routes() {
-    $plugin_rest = new Json_WP_Post_Parser_Rest( $this->get_plugin_name(), $this->get_version() );
+    $plugin_rest = new Admin\Json_WP_Post_Parser_Rest( $this->get_plugin_name(), $this->get_version() );
 
     $this->loader->add_action( 'rest_api_init', $plugin_rest, 'api_fields_init' );
   }

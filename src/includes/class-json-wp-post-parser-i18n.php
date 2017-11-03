@@ -12,6 +12,8 @@
  * @subpackage Json_WP_Post_Parser/includes
  */
 
+namespace Json_WP_Post_Parser\Includes;
+
 /**
  * Define the internationalization functionality.
  *

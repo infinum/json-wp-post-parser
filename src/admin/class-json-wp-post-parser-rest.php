@@ -9,6 +9,8 @@
  * @subpackage Json_WP_Post_Parser/admin
  */
 
+namespace Json_WP_Post_Parser\Admin;
+
 /**
  * The REST specific functionality of the plugin.
  *
@@ -104,7 +106,7 @@ class Json_WP_Post_Parser_Rest {
 
     if ( ! wp_verify_nonce( $headers['x_wp_nonce'][0], 'wp_rest' ) ) {
       $message = esc_html__( 'Nonce error', 'json-wp-post-parser' );
-      $error = new WP_Error( '-1', $message );
+      $error = new \WP_Error( '-1', $message );
       wp_send_json_error( $error );
     }
 

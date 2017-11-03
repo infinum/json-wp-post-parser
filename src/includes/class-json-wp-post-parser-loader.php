@@ -9,6 +9,8 @@
  * @subpackage Json_WP_Post_Parser/includes
  */
 
+namespace Json_WP_Post_Parser\Includes;
+
 /**
  * Register all actions and filters for the plugin.
  *
