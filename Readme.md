@@ -74,7 +74,7 @@ When using post update to update all your posts, the default number of posts tha
 
 ## Credits
 
-JSON post parser  is maintained and sponsored by
+JSON post parser is maintained and sponsored by
 [Infinum](https://www.infinum.co).
 
 <img src="https://infinum.co/infinum.png" width="264">
