@@ -71,8 +71,8 @@ class Json_Post_Parser_Admin {
    */
   public function render_parse_posts_page() {
     $post_types = array( 'post', 'page' );
-    if ( has_filter( 'json_post_parser_add_post_types' ) ) {
-      $post_types = apply_filters( 'json_post_parser_add_post_types', $post_types );
+    if ( has_filter( 'json_wp_post_parser_add_post_types' ) ) {
+      $post_types = apply_filters( 'json_wp_post_parser_add_post_types', $post_types );
     }
 
     $all_posts_args = array(

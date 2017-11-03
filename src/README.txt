@@ -18,7 +18,7 @@ This is where having post served as JSON simplifies things, in that you can find
 When you create a post and then save it, the parser will go through your rendered post and parse it in JSON, which will then be saved in `post_content_json` table in the `posts` table.
 Other than parsing the post, this plugin registers the additional REST field called `post_content_json` which you can fetch by going to `wp-json/wp/v2/posts/` or `wp-json/wp/v2/pages/`.
 
-If you want to expose your own custom post types to the REST endpoint, use the filter `json_post_parser_add_post_types`.
+If you want to expose your own custom post types to the REST endpoint, use the filter `json_wp_post_parser_add_post_types`.
 
 == Installation ==
 
@@ -36,11 +36,11 @@ By using AJAX we can trigger post saving asynchronously, which doesn't overload 
 
 = How can I add my custom post types, so that rest route has it as well? =
 
-There is a built in filter hook which you can use called `json_post_parser_add_post_types`. Say you have custom post type called `books`,
+There is a built in filter hook which you can use called `json_wp_post_parser_add_post_types`. Say you have custom post type called `books`,
 you'd add them like this:
 
 ```php
-add_filter( 'json_post_parser_add_post_types', 'my_slug_add_cpt_to_parser' );
+add_filter( 'json_wp_post_parser_add_post_types', 'my_slug_add_cpt_to_parser' );
 
 function my_slug_add_cpt_to_parser( $post_types ) {
   // the $post_types parameter is an array of all post_types from the api_fields_init() method.

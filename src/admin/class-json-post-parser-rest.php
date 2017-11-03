@@ -57,8 +57,8 @@ class Json_Post_Parser_Rest {
    */
   public function api_fields_init() {
     $post_types = array( 'post', 'page' );
-    if ( has_filter( 'json_post_parser_add_post_types' ) ) {
-      $post_types = apply_filters( 'json_post_parser_add_post_types', $post_types );
+    if ( has_filter( 'json_wp_post_parser_add_post_types' ) ) {
+      $post_types = apply_filters( 'json_wp_post_parser_add_post_types', $post_types );
     }
 
     register_rest_field(

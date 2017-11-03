@@ -26,15 +26,15 @@ if ( ! defined( 'WPINC' ) ) {
 
 define( 'PLUGIN_NAME_VERSION', '1.0.0' );
 
-add_action( 'admin_init', 'json_post_parser_add_activation_notice' );
+add_action( 'admin_init', 'json_wp_post_parser_add_activation_notice' );
 
 /**
  * Add admin notice upon plugin activation
  *
  * @since 1.0.0
  */
-function json_post_parser_add_activation_notice() {
-  add_action( 'admin_notices', 'json_post_parser_activation_notice' );
+function json_wp_post_parser_add_activation_notice() {
+  add_action( 'admin_notices', 'json_wp_post_parser_activation_notice' );
 }
 
 /**
@@ -42,11 +42,11 @@ function json_post_parser_add_activation_notice() {
  *
  * @since 1.0.0
  */
-function json_post_parser_activation_notice() {
-  $json_post_parser_active = get_option( 'json_post_parser_active' );
+function json_wp_post_parser_activation_notice() {
+  $json_wp_post_parser_active = get_option( 'json_wp_post_parser_active' );
 
-  if ( ! $json_post_parser_active ) {
-    update_option( 'json_post_parser_active', true );
+  if ( ! $json_wp_post_parser_active ) {
+    update_option( 'json_wp_post_parser_active', true );
     ?>
       <div class="notice notice-success is-dismissible">
         <p><?php printf( esc_html__( 'If you want to update all your posts and pages, go to ', 'json-post-parser' ) . '<a href="%s">' . esc_html__( 'this page', 'json-post-parser' ) . '</a>', esc_url( admin_url( 'options-general.php?page=json_parser_posts' ) ) ); ?></p>
@@ -59,7 +59,7 @@ function json_post_parser_activation_notice() {
  * The code that runs during plugin activation.
  * This action is documented in includes/class-json-post-parser-activator.php
  */
-function activate_json_post_parser() {
+function activate_json_wp_post_parser() {
   require_once plugin_dir_path( __FILE__ ) . 'includes/class-json-post-parser-activator.php';
   Json_Post_Parser_Activator::activate();
 }
@@ -68,13 +68,13 @@ function activate_json_post_parser() {
  * The code that runs during plugin deactivation.
  * This action is documented in includes/class-json-post-parser-deactivator.php
  */
-function deactivate_json_post_parser() {
+function deactivate_json_wp_post_parser() {
   require_once plugin_dir_path( __FILE__ ) . 'includes/class-json-post-parser-deactivator.php';
   Json_Post_Parser_Deactivator::deactivate();
 }
 
-register_activation_hook( __FILE__, 'activate_json_post_parser' );
-register_deactivation_hook( __FILE__, 'deactivate_json_post_parser' );
+register_activation_hook( __FILE__, 'activate_json_wp_post_parser' );
+register_deactivation_hook( __FILE__, 'deactivate_json_wp_post_parser' );
 
 /**
  * The core plugin class that is used to define internationalization,
@@ -91,8 +91,8 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-json-post-parser.php';
  *
  * @since    1.0.0
  */
-function run_json_post_parser() {
+function run_json_wp_post_parser() {
   $plugin = new Json_Post_Parser();
   $plugin->run();
 }
-run_json_post_parser();
+run_json_wp_post_parser();

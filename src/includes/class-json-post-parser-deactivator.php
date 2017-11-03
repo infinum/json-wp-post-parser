@@ -27,7 +27,7 @@ class Json_Post_Parser_Deactivator {
    * @since    1.0.0
    */
   public static function deactivate() {
-    delete_option( 'json_post_parser_active' );
+    delete_option( 'json_wp_post_parser_active' );
     flush_rewrite_rules();
   }
 
