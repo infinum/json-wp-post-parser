@@ -5,8 +5,8 @@
  * @link       https://infinum.co/careers
  * @since      1.0.0
  *
- * @package    Json_Post_Parser
- * @subpackage Json_Post_Parser/admin
+ * @package    Json_WP_Post_Parser
+ * @subpackage Json_WP_Post_Parser/admin
  */
 
 /**
@@ -14,11 +14,11 @@
  *
  * Defines the rest routes and endpoints.
  *
- * @package    Json_Post_Parser
- * @subpackage Json_Post_Parser/admin
+ * @package    Json_WP_Post_Parser
+ * @subpackage Json_WP_Post_Parser/admin
  * @author     Infinum <info@infinum.co>
  */
-class Json_Post_Parser_Rest {
+class Json_WP_Post_Parser_Rest {
 
   /**
    * The ID of this plugin.
@@ -71,7 +71,7 @@ class Json_Post_Parser_Rest {
     );
 
     register_rest_route(
-      'wp/v2/posts-parse-json/', '/run', array(
+      'posts-parse-json/v1/', '/run', array(
           'methods'  => 'POST',
           'callback' => [ $this, 'ajax_post_resave' ],
       )
@@ -96,17 +96,26 @@ class Json_Post_Parser_Rest {
   /**
    * Resave post callback
    *
+   * @param \WP_REST_Request $request Full data about the request.
    * @since 1.0.0
    */
-  public function ajax_post_resave() {
-    if ( isset( $_POST['parseNonce'], $_POST['postID'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['parseNonce'] ) ), 'wp_rest' ) && $_POST['postID'] !== '' ) {
+  public function ajax_post_resave( \WP_REST_Request $request ) {
+    $headers = $request->get_headers();
+
+    if ( ! wp_verify_nonce( $headers['x_wp_nonce'][0], 'wp_rest' ) ) {
+      $message = esc_html__( 'Nonce error', 'json-wp-post-parser' );
+      $error = new WP_Error( '-1', $message );
+      wp_send_json_error( $error );
+    }
+
+    if ( isset( $_POST['postID'] ) && $_POST['postID'] !== '' ) {
       $post_id = intval( $_POST['postID'] );
 
       wp_update_post( array(
           'ID' => $post_id,
       ) );
 
-      wp_send_json( esc_html__( 'Object ID: ', 'json-post-parser' ) . $post_id . esc_html__( ' updated.', 'json-post-parser' ) );
+      wp_send_json( sprintf( esc_html__( 'Object ID: %d updated', 'json-wp-post-parser' ), intval( $post_id ) ) );
     }
   }
 }

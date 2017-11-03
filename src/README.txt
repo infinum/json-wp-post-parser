@@ -22,7 +22,7 @@ If you want to expose your own custom post types to the REST endpoint, use the f
 
 == Installation ==
 
-1. Place `json-post-parser` folder in the `/wp-content/plugins/` directory
+1. Place `json-wp-post-parser` folder in the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Frequently Asked Questions ==
@@ -51,7 +51,7 @@ function my_slug_add_cpt_to_parser( $post_types ) {
 
 == Possible issues ==
 
-When using post update to update all your posts, the default number of posts that are queried is 5000. This is done to optimize query performance. Because you should never use `'posts_per_page' => -1`. If you have more than 5000 posts then open `class-json-post-parser-admin.php` and change this number on line 84.
+When using post update to update all your posts, the default number of posts that are queried is 5000. This is done to optimize query performance. Because you should never use `'posts_per_page' => -1`. If you have more than 5000 posts then open `class-json-wp-post-parser-admin.php` and change this number on line 84.
 
 == Changelog ==
 

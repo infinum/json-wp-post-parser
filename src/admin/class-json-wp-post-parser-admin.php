@@ -5,8 +5,8 @@
  * @link       https://infinum.co/careers
  * @since      1.0.0
  *
- * @package    Json_Post_Parser
- * @subpackage Json_Post_Parser/admin
+ * @package    Json_WP_Post_Parser
+ * @subpackage Json_WP_Post_Parser/admin
  */
 
 /**
@@ -15,11 +15,11 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
- * @package    Json_Post_Parser
- * @subpackage Json_Post_Parser/admin
+ * @package    Json_WP_Post_Parser
+ * @subpackage Json_WP_Post_Parser/admin
  * @author     Infinum <info@infinum.co>
  */
-class Json_Post_Parser_Admin {
+class Json_WP_Post_Parser_Admin {
 
   /**
    * The ID of this plugin.
@@ -56,8 +56,8 @@ class Json_Post_Parser_Admin {
    */
   public function add_posts_parse_page() {
     add_options_page(
-      esc_html__( 'Parse posts', 'json-post-parser' ),
-      esc_html__( 'Parse posts', 'json-post-parser' ),
+      esc_html__( 'Parse posts', 'json-wp-post-parser' ),
+      esc_html__( 'Parse posts', 'json-wp-post-parser' ),
       'manage_options',
       'json_parser_posts',
       array( $this, 'render_parse_posts_page' )
@@ -93,10 +93,10 @@ class Json_Post_Parser_Admin {
     }
     ?>
     <div class="wrap">
-      <h2><?php esc_html_e( 'Resave posts', 'json-post-parser' ); ?></h2>
-      <div class="info" style="margin-bottom:20px;"><?php esc_html_e( 'This will resave all your existing posts and pages, including any custom post type you might have.', 'json-post-parser' ); ?></div>
+      <h2><?php esc_html_e( 'Resave posts', 'json-wp-post-parser' ); ?></h2>
+      <div class="info" style="margin-bottom:20px;"><?php esc_html_e( 'This will resave all your existing posts and pages, including any custom post type you might have.', 'json-wp-post-parser' ); ?></div>
       <div class="processed-posts js-processed-posts" data-posts="<?php echo wp_kses_post( wp_json_encode( $posts_array ) ); ?>"></div>
-      <button class="button button-primary js-start-post-resave"><?php esc_html_e( 'Start resaving', 'json-post-parser' ); ?></button>
+      <button class="button button-primary js-start-post-resave"><?php esc_html_e( 'Start resaving', 'json-wp-post-parser' ); ?></button>
     </div>
     <?php
   }
@@ -185,13 +185,13 @@ class Json_Post_Parser_Admin {
     switch ( $node_type ) {
       case XML_ELEMENT_NODE:
         $node_type = 'element';
-        break;
+      break;
       case XML_TEXT_NODE:
         $node_type = 'text';
-        break;
+      break;
       default:
         $node_type = 'element';
-        break;
+      break;
     }
 
     return $node_type;
@@ -209,7 +209,9 @@ class Json_Post_Parser_Admin {
       wp_localize_script( $this->plugin_name, 'wpApiSettings', array(
           'root'       => esc_url_raw( rest_url() ),
           'nonce'      => wp_create_nonce( 'wp_rest' ),
-          'processing' => esc_html__( 'Processing...', 'json-post-parser' ),
+          'processing' => esc_html__( 'Processing...', 'json-wp-post-parser' ),
+          'error'      => esc_html__( 'Error', 'json-wp-post-parser' ),
+          'finished'   => esc_html__( 'Finshed', 'json-wp-post-parser' ),
       ) );
     }
   }

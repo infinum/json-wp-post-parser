@@ -8,8 +8,8 @@
  * @link       https://infinum.co/careers
  * @since      1.0.0
  *
- * @package    Json_Post_Parser
- * @subpackage Json_Post_Parser/includes
+ * @package    Json_WP_Post_Parser
+ * @subpackage Json_WP_Post_Parser/includes
  */
 
 /**
@@ -22,11 +22,11 @@
  * version of the plugin.
  *
  * @since      1.0.0
- * @package    Json_Post_Parser
- * @subpackage Json_Post_Parser/includes
+ * @package    Json_WP_Post_Parser
+ * @subpackage Json_WP_Post_Parser/includes
  * @author     Infinum <info@infinum.co>
  */
-class Json_Post_Parser {
+class Json_WP_Post_Parser {
 
   /**
    * The loader that's responsible for maintaining and registering all hooks that power
@@ -34,7 +34,7 @@ class Json_Post_Parser {
    *
    * @since    1.0.0
    * @access   protected
-   * @var      Json_Post_Parser_Loader    $loader    Maintains and registers all hooks for the plugin.
+   * @var      Json_WP_Post_Parser_Loader    $loader    Maintains and registers all hooks for the plugin.
    */
   protected $loader;
 
@@ -72,7 +72,7 @@ class Json_Post_Parser {
       $this->version = '1.0.0';
     }
 
-    $this->plugin_name = 'json-post-parser';
+    $this->plugin_name = 'json-wp-post-parser';
 
     $this->load_dependencies();
     $this->set_locale();
@@ -85,9 +85,9 @@ class Json_Post_Parser {
    *
    * Include the following files that make up the plugin:
    *
-   * - Json_Post_Parser_Loader. Orchestrates the hooks of the plugin.
-   * - Json_Post_Parser_i18n. Defines internationalization functionality.
-   * - Json_Post_Parser_Admin. Defines all hooks for the admin area.
+   * - Json_WP_Post_Parser_Loader. Orchestrates the hooks of the plugin.
+   * - Json_WP_Post_Parser_i18n. Defines internationalization functionality.
+   * - Json_WP_Post_Parser_Admin. Defines all hooks for the admin area.
    *
    * Create an instance of the loader which will be used to register the hooks
    * with WordPress.
@@ -100,38 +100,38 @@ class Json_Post_Parser {
      * The class responsible for orchestrating the actions and filters of the
      * core plugin.
      */
-    require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-json-post-parser-loader.php';
+    require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-json-wp-post-parser-loader.php';
 
     /**
      * The class responsible for defining internationalization functionality
      * of the plugin.
      */
-    require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-json-post-parser-i18n.php';
+    require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-json-wp-post-parser-i18n.php';
 
     /**
      * The class responsible for defining all actions that occur in the admin area.
      */
-    require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-json-post-parser-admin.php';
+    require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-json-wp-post-parser-admin.php';
 
     /**
      * The class responsible for REST architecture.
      */
-    require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-json-post-parser-rest.php';
+    require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-json-wp-post-parser-rest.php';
 
-    $this->loader = new Json_Post_Parser_Loader();
+    $this->loader = new Json_WP_Post_Parser_Loader();
   }
 
   /**
    * Define the locale for this plugin for internationalization.
    *
-   * Uses the Json_Post_Parser_i18n class in order to set the domain and to register the hook
+   * Uses the Json_WP_Post_Parser_i18n class in order to set the domain and to register the hook
    * with WordPress.
    *
    * @since    1.0.0
    * @access   private
    */
   private function set_locale() {
-    $plugin_i18n = new Json_Post_Parser_i18n();
+    $plugin_i18n = new Json_WP_Post_Parser_i18n();
 
     $this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
   }
@@ -144,7 +144,7 @@ class Json_Post_Parser {
    * @access   private
    */
   private function define_admin_hooks() {
-    $plugin_admin = new Json_Post_Parser_Admin( $this->get_plugin_name(), $this->get_version() );
+    $plugin_admin = new Json_WP_Post_Parser_Admin( $this->get_plugin_name(), $this->get_version() );
 
     $this->loader->add_action( 'save_post', $plugin_admin, 'parse_content_to_json' );
     $this->loader->add_action( 'admin_menu', $plugin_admin, 'add_posts_parse_page' );
@@ -158,7 +158,7 @@ class Json_Post_Parser {
    * @access   private
    */
   private function register_rest_routes() {
-    $plugin_rest = new Json_Post_Parser_Rest( $this->get_plugin_name(), $this->get_version() );
+    $plugin_rest = new Json_WP_Post_Parser_Rest( $this->get_plugin_name(), $this->get_version() );
 
     $this->loader->add_action( 'rest_api_init', $plugin_rest, 'api_fields_init' );
   }
@@ -187,7 +187,7 @@ class Json_Post_Parser {
    * The reference to the class that orchestrates the hooks with the plugin.
    *
    * @since     1.0.0
-   * @return    Json_Post_Parser_Loader    Orchestrates the hooks of the plugin.
+   * @return    Json_WP_Post_Parser_Loader    Orchestrates the hooks of the plugin.
    */
   public function get_loader() {
     return $this->loader;

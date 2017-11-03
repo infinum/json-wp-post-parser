@@ -5,8 +5,8 @@
  * @link       https://infinum.co/careers
  * @since      1.0.0
  *
- * @package    Json_Post_Parser
- * @subpackage Json_Post_Parser/includes
+ * @package    Json_WP_Post_Parser
+ * @subpackage Json_WP_Post_Parser/includes
  */
 
 /**
@@ -15,11 +15,11 @@
  * This class defines all code necessary to run during the plugin's deactivation.
  *
  * @since      1.0.0
- * @package    Json_Post_Parser
- * @subpackage Json_Post_Parser/includes
+ * @package    Json_WP_Post_Parser
+ * @subpackage Json_WP_Post_Parser/includes
  * @author     Infinum <info@infinum.co>
  */
-class Json_Post_Parser_Deactivator {
+class Json_WP_Post_Parser_Deactivator {
 
   /**
    * Flush permalinks

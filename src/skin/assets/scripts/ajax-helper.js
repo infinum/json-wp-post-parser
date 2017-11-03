@@ -8,13 +8,12 @@ const ajax = {
     }
 
     const ajaxData = {
-      parseNonce: wpApiSettings.nonce,
       postID: ID
     };
 
     $.ajax({
       type: 'POST',
-      url: `${wpApiSettings.root}wp/v2/posts-parse-json/run`,
+      url: `${wpApiSettings.root}posts-parse-json/v1/run`,
       data: ajaxData,
       beforeSend: (xhr) => {
         $notifElement.html('');
@@ -26,11 +25,11 @@ const ajax = {
         $notifElement.append(`<div>${data}</div>`);
       })
       .fail((xhr, status, error) => {
-        $notifElement.append(`<div>Error ${xhr.status}: ${error}</div>`);
+        $notifElement.append(`<div>${wpApiSettings.error} ${xhr.status}: ${error}</div>`);
       })
       .always(() => {
         if (finished) {
-          $notifElement.append('<div>Finished</div>');
+          $notifElement.append(`<div>${wpApiSettings.finished}</div>`);
         }
       });
     return false;

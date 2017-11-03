@@ -5,8 +5,8 @@
  * @link       https://infinum.co/careers
  * @since      1.0.0
  *
- * @package    Json_Post_Parser
- * @subpackage Json_Post_Parser/includes
+ * @package    Json_WP_Post_Parser
+ * @subpackage Json_WP_Post_Parser/includes
  */
 
 /**
@@ -15,11 +15,11 @@
  * Adds 'post_content_json' column in the posts table.
  *
  * @since      1.0.0
- * @package    Json_Post_Parser
- * @subpackage Json_Post_Parser/includes
+ * @package    Json_WP_Post_Parser
+ * @subpackage Json_WP_Post_Parser/includes
  * @author     Infinum <info@infinum.co>
  */
-class Json_Post_Parser_Activator {
+class Json_WP_Post_Parser_Activator {
 
   /**
    * Create post column if it doesn't exist.

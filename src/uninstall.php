@@ -21,7 +21,7 @@
  * @link       https://infinum.co/careers
  * @since      1.0.0
  *
- * @package    Json_Post_Parser
+ * @package    Json_WP_Post_Parser
  */
 
 if ( ! current_user_can( 'activate_plugins' ) ) {
