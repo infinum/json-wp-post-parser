@@ -5,8 +5,7 @@
  * @link       https://infinum.co/careers
  * @since      1.0.0
  *
- * @package    Json_WP_Post_Parser
- * @subpackage Json_WP_Post_Parser/admin
+ * @package    Json_WP_Post_Parser\Admin
  */
 
 namespace Json_WP_Post_Parser\Admin;
@@ -16,8 +15,7 @@ namespace Json_WP_Post_Parser\Admin;
  *
  * Defines the rest routes and endpoints.
  *
- * @package    Json_WP_Post_Parser
- * @subpackage Json_WP_Post_Parser/admin
+ * @package    Json_WP_Post_Parser\Admin
  * @author     Infinum <info@infinum.co>
  */
 class Json_WP_Post_Parser_Rest {
@@ -44,8 +42,8 @@ class Json_WP_Post_Parser_Rest {
    * Initialize the class and set its properties.
    *
    * @since    1.0.0
-   * @param      string $plugin_name       The name of this plugin.
-   * @param      string $version    The version of this plugin.
+   * @param    string $plugin_name       The name of this plugin.
+   * @param    string $version    The version of this plugin.
    */
   public function __construct( $plugin_name, $version ) {
     $this->plugin_name = $plugin_name;

@@ -8,12 +8,11 @@
  * @link       https://infinum.co/careers
  * @since      1.0.0
  *
- * @package    Json_WP_Post_Parser
- * @subpackage Json_WP_Post_Parser/includes
+ * @package    Json_WP_Post_Parser\Includes
  */
 
 namespace Json_WP_Post_Parser\Includes;
-use Json_WP_Post_Parser\Admin;
+use Json_WP_Post_Parser\Admin as Admin;
 
 /**
  * The core plugin class.
@@ -25,8 +24,7 @@ use Json_WP_Post_Parser\Admin;
  * version of the plugin.
  *
  * @since      1.0.0
- * @package    Json_WP_Post_Parser
- * @subpackage Json_WP_Post_Parser/includes
+ * @package    Json_WP_Post_Parser\Includes
  * @author     Infinum <info@infinum.co>
  */
 class Json_WP_Post_Parser {
@@ -90,14 +88,6 @@ class Json_WP_Post_Parser {
   /**
    * Load the required dependencies for this plugin.
    *
-   * Include the following files that make up the plugin:
-   *
-   * - Json_WP_Post_Parser_Loader. Orchestrates the hooks of the plugin.
-   * - Json_WP_Post_Parser_i18n. Defines internationalization functionality.
-   * - Json_WP_Post_Parser_Admin. Defines all hooks for the admin area.
-   * - Json_WP_Post_Parser_Rest. Defines all REST functionality.
-   * - Json_WP_Post_Parser_Parse. Defines all the parsing functionality.
-   *
    * Create an instance of the loader which will be used to register the hooks
    * with WordPress.
    *
@@ -105,33 +95,6 @@ class Json_WP_Post_Parser {
    * @access   private
    */
   private function load_dependencies() {
-    /**
-     * The class responsible for orchestrating the actions and filters of the
-     * core plugin.
-     */
-    require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-json-wp-post-parser-loader.php';
-
-    /**
-     * The class responsible for defining internationalization functionality
-     * of the plugin.
-     */
-    require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-json-wp-post-parser-i18n.php';
-
-    /**
-     * The class responsible for defining all actions that occur in the admin area.
-     */
-    require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-json-wp-post-parser-admin.php';
-
-    /**
-     * The class responsible for parsing post content.
-     */
-    require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-json-wp-post-parser-parse.php';
-
-    /**
-     * The class responsible for REST architecture.
-     */
-    require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-json-wp-post-parser-rest.php';
-
     $this->loader = new Json_WP_Post_Parser_Loader();
   }
 

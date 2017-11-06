@@ -25,7 +25,7 @@ const ajax = {
         $notifElement.append(`<div>${data}</div>`);
       })
       .fail((xhr, status, error) => {
-        $notifElement.append(`<div>${wpApiSettings.error} ${xhr.status}: ${error}</div>`);
+        $notifElement.append(`<div>${wpApiSettings.error} ${xhr.status} (${ID}): ${error}</div>`);
       })
       .always(() => {
         if (finished) {

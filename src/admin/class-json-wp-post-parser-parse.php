@@ -5,8 +5,7 @@
  * @link       https://infinum.co/careers
  * @since      1.0.0
  *
- * @package    Json_WP_Post_Parser
- * @subpackage Json_WP_Post_Parser/admin
+ * @package    Json_WP_Post_Parser\Admin
  */
 
 namespace Json_WP_Post_Parser\Admin;
@@ -17,8 +16,7 @@ namespace Json_WP_Post_Parser\Admin;
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
- * @package    Json_WP_Post_Parser
- * @subpackage Json_WP_Post_Parser/admin
+ * @package    Json_WP_Post_Parser\Admin
  * @author     Infinum <info@infinum.co>
  */
 class Json_WP_Post_Parser_Parse {
@@ -79,14 +77,21 @@ class Json_WP_Post_Parser_Parse {
 
       $post_content = implode( $new_lines );
 
-      $dom_json = $this->parse_content_to_json( $post_content );
-
-      $wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET post_content_json = %s WHERE ID = %d", $dom_json, $post_id ) );
+      if ( ! empty( $post_content ) ) {
+        // Remove hidden characters from the post content.
+        $new_post_content = preg_replace( '/\s\s/', ' ', preg_replace( '/[^\x00-\x7F]/', ' ', $post_content ) );
+        $dom_json = $this->parse_content_to_json( $new_post_content );
+        $wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET post_content_json = %s WHERE ID = %d", $dom_json, $post_id ) );
+      }
     }
   }
 
   /**
    * Parse post content and return json string
+   *
+   * DOMDocument uses HTML4 to parse the DOM, so HTML5 tags will throw out errors.
+   * Currently the parser will report errors for such tags but the method for
+   * loading HTML will work fine, and the content will be parsed.
    *
    * @param string $content Post content HTML string.
    * @return string         JSON string.
@@ -94,7 +99,10 @@ class Json_WP_Post_Parser_Parse {
    */
   public function parse_content_to_json( $content ) {
       $post_dom = new \DOMDocument();
+      libxml_use_internal_errors( true );
       $post_dom->loadHTML( $content );
+      libxml_use_internal_errors( false );
+      libxml_clear_errors();
 
       return wp_json_encode( $this->element_to_obj( $post_dom->documentElement ) );
   }

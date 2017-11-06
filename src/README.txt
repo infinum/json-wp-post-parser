@@ -2,7 +2,7 @@
 Contributors: dingo_bastard
 Tags: post, parser, content
 Requires at least: 4.4
-Tested up to: 4.8.2
+Tested up to: 4.8.3
 Stable tag: 1.0.0
 Requires PHP: 5.6
 License: GPLv2 or later

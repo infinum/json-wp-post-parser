@@ -5,8 +5,7 @@
  * @link       https://infinum.co/careers
  * @since      1.0.0
  *
- * @package    Json_WP_Post_Parser
- * @subpackage Json_WP_Post_Parser/includes
+ * @package    Json_WP_Post_Parser\Includes
  */
 
 namespace Json_WP_Post_Parser\Includes;
@@ -18,8 +17,7 @@ namespace Json_WP_Post_Parser\Includes;
  * the plugin, and register them with the WordPress API. Call the
  * run function to execute the list of actions and filters.
  *
- * @package    Json_WP_Post_Parser
- * @subpackage Json_WP_Post_Parser/includes
+ * @package    Json_WP_Post_Parser\Includes
  * @author     Infinum <info@infinum.co>
  */
 class Json_WP_Post_Parser_Loader {

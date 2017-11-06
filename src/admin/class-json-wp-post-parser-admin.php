@@ -5,8 +5,7 @@
  * @link       https://infinum.co/careers
  * @since      1.0.0
  *
- * @package    Json_WP_Post_Parser
- * @subpackage Json_WP_Post_Parser/admin
+ * @package    Json_WP_Post_Parser\Admin
  */
 
 namespace Json_WP_Post_Parser\Admin;
@@ -17,8 +16,7 @@ namespace Json_WP_Post_Parser\Admin;
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
- * @package    Json_WP_Post_Parser
- * @subpackage Json_WP_Post_Parser/admin
+ * @package    Json_WP_Post_Parser\Admin
  * @author     Infinum <info@infinum.co>
  */
 class Json_WP_Post_Parser_Admin {
@@ -45,8 +43,8 @@ class Json_WP_Post_Parser_Admin {
    * Initialize the class and set its properties.
    *
    * @since    1.0.0
-   * @param      string $plugin_name       The name of this plugin.
-   * @param      string $version    The version of this plugin.
+   * @param    string $plugin_name  The name of this plugin.
+   * @param    string $version      The version of this plugin.
    */
   public function __construct( $plugin_name, $version ) {
       $this->plugin_name = $plugin_name;
@@ -54,7 +52,9 @@ class Json_WP_Post_Parser_Admin {
   }
 
   /**
-   * Add page that will display reparsed posts
+   * Add page that will display the button for resave action
+   *
+   * @since 1.0.0
    */
   public function add_posts_parse_page() {
     add_options_page(
@@ -112,7 +112,7 @@ class Json_WP_Post_Parser_Admin {
    */
   public function enqueue_scripts( $hook ) {
     if ( $hook === 'settings_page_json_parser_posts' ) {
-      wp_enqueue_script( $this->plugin_name, plugins_url() . '/' . $this->plugin_name . '/assets/scripts/application.js', array( '' ), $this->version, false );
+      wp_enqueue_script( $this->plugin_name, plugins_url() . '/' . $this->plugin_name . '/assets/scripts/application.js', array(), $this->version, false );
       wp_localize_script( $this->plugin_name, 'wpApiSettings', array(
           'root'       => esc_url_raw( rest_url() ),
           'nonce'      => wp_create_nonce( 'wp_rest' ),
@@ -122,5 +122,4 @@ class Json_WP_Post_Parser_Admin {
       ) );
     }
   }
-
 }

@@ -31,6 +31,8 @@ npm run build
 
 ### Unit tests
 
+All the unit tests are located in the `\tests` folder. The unit testing is done via [PHPUnit](https://phpunit.de/). Feel free to add you own tests or check the existing one.
+
 ## WordPress Installation
 
 Once you've built the plugin using npm, you can use code found in the `/build/` folder as a regular WordPress plugin.

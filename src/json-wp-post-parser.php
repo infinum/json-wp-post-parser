@@ -20,6 +20,7 @@
  */
 
 namespace Json_WP_Post_Parser;
+use Json_WP_Post_Parser\Includes as Includes;
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
@@ -28,6 +29,9 @@ if ( ! defined( 'WPINC' ) ) {
 
 define( 'JWPP_PLUGIN_VERSION', '1.0.0' );
 define( 'JWPP_PLUGIN_NAME', 'json-wp-post-parser' );
+
+// Include the autoloader so we can dynamically include the rest of the classes.
+include_once( 'lib/autoloader.php' );
 
 add_action( 'admin_init', __NAMESPACE__ . '\\json_wp_post_parser_add_activation_notice' );
 
@@ -80,12 +84,6 @@ register_activation_hook( __FILE__, __NAMESPACE__ . '\\activate_json_wp_post_par
 register_deactivation_hook( __FILE__, __NAMESPACE__ . '\\deactivate_json_wp_post_parser' );
 
 /**
- * The core plugin class that is used to define internationalization,
- * admin-specific hooks, and public-facing site hooks.
- */
-require plugin_dir_path( __FILE__ ) . 'includes/class-json-wp-post-parser.php';
-
-/**
  * Begins execution of the plugin.
  *
  * Since everything within the plugin is registered via hooks,
@@ -98,4 +96,5 @@ function run_json_wp_post_parser() {
   $plugin = new Includes\Json_WP_Post_Parser();
   $plugin->run();
 }
+
 run_json_wp_post_parser();
