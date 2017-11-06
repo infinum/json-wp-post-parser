@@ -8,9 +8,8 @@
 # Vagrantfile
 Vagrantfile
 
-# Test files
+# Test install files
 /bin/
-.travis.yml
 
 # Build files
 /build/
