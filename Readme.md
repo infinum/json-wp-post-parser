@@ -51,11 +51,11 @@ By using AJAX we can trigger post saving asynchronously, which doesn't overload 
 
 ### How can I add my custom post types, so that rest route has it as well?
 
-There is a built in filter hook which you can use called `json_post_parser_add_post_types`. Say you have custom post type called `books`,
+There is a built in filter hook which you can use called `json_wp_post_parser_add_post_types`. Say you have custom post type called `books`,
 you'd add them like this:
 
 ```php
-add_filter( 'json_post_parser_add_post_types', 'my_slug_add_cpt_to_parser' );
+add_filter( 'json_wp_post_parser_add_post_types', 'my_slug_add_cpt_to_parser' );
 
 function my_slug_add_cpt_to_parser( $post_types ) {
   // the $post_types parameter is an array of all post_types from the api_fields_init() method.

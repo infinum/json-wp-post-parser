@@ -8,8 +8,5 @@
 # Vagrantfile
 Vagrantfile
 
-# Test install files
-/bin/
-
 # Build files
 /build/
