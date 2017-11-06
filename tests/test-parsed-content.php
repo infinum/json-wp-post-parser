@@ -95,4 +95,22 @@ class Parsed_Content extends WP_UnitTestCase {
 
     $this->assertEquals( $json, $result );
   }
+
+  /**
+   * Test div
+   *
+   * @since 1.0.0
+   */
+  public function test_div_content() {
+
+    $json = '{"node":"element","tag":"html","child":[{"node":"element","tag":"body","child":[{"node":"element","tag":"div"}]}]}';
+
+    $parser = new Admin\Json_WP_Post_Parser_Parse( $this->plugin_name, $this->version );
+
+    $result = $parser->parse_content_to_json( '<div></div>' );
+    $result_fail = $parser->parse_content_to_json( '<div>A</div>' );
+
+    $this->assertEquals( $json, $result );
+    $this->assertNotEquals( $json, $result_fail );
+  }
 }
