@@ -31,23 +31,6 @@ class Parsed_Content extends WP_UnitTestCase {
   private $version = '1.0.0';
 
   /**
-   * Test html string
-   *
-   *  <div id="1" class="foo">
-   *  <h2>sample text with <code>inline tag</code>
-   *  </h2>
-   *  <pre id="demo" class="foo bar">foo</pre>
-   *  <pre id="output" class="goo">goo</pre>
-   *  <input id="execute" type="button" value="execute"/>
-   *  </div>
-   *
-   * @since    1.0.0
-   * @access   private
-   * @var      string
-   */
-  private $test_html = '<div id="1" class="foo"><h2>sample text with <code>inline tag</code></h2><pre id="demo" class="foo bar">foo</pre><pre id="output" class="goo">goo</pre><input id="execute" type="button" value="execute"/></div>';
-
-  /**
    * Test the content type
    *
    * Test if the result is JSON string.
@@ -58,7 +41,7 @@ class Parsed_Content extends WP_UnitTestCase {
 
     $parser = new Admin\Json_WP_Post_Parser_Parse( $this->plugin_name, $this->version );
 
-    $result = $parser->parse_content_to_json( $this->test_html );
+    $result = $parser->parse_content_to_json( '<div id="test">This is a test.</div>' );
 
     $this->assertTrue( is_string( $result ), 'Parsed content should be a JSON sting.' );
   }
@@ -81,36 +64,32 @@ class Parsed_Content extends WP_UnitTestCase {
    * Test the content
    *
    * Test if the given HTML parses to a correct JSON.
-   * TO DO: Make multiple html tests, starting from simple (just div, br, hr, h1 etc.) to complex.
    *
+   * @param string $provided_json Provided json to the test method.
+   * @param string $provided_html Provided html to the test method.
    * @since 1.0.0
+   *
+   * @dataProvider provider_test_return_json_content
    */
-  public function test_html_content() {
-
-    $json = '{"node":"element","tag":"html","child":[{"node":"element","tag":"body","child":[{"node":"element","tag":"div","attr":{"id":"1","class":"foo"},"child":[{"node":"element","tag":"h2","child":[{"node":"text","text":"sample text with "},{"node":"element","tag":"code","child":[{"node":"text","text":"inline tag"}]}]},{"node":"element","tag":"pre","attr":{"id":"demo","class":"foo bar"},"child":[{"node":"text","text":"foo"}]},{"node":"element","tag":"pre","attr":{"id":"output","class":"goo"},"child":[{"node":"text","text":"goo"}]},{"node":"element","tag":"input","attr":{"id":"execute","type":"button","value":"execute"}}]}]}]}';
+  public function test_html_content( $provided_json, $provided_html ) {
 
     $parser = new Admin\Json_WP_Post_Parser_Parse( $this->plugin_name, $this->version );
 
-    $result = $parser->parse_content_to_json( $this->test_html );
+    $result_json = $parser->parse_content_to_json( $provided_html );
 
-    $this->assertEquals( $json, $result );
+    $this->assertEquals( $provided_json, $result_json );
   }
 
   /**
-   * Test div
+   * Data test provider
    *
+   * @return array Array of provided data to test.
    * @since 1.0.0
    */
-  public function test_div_content() {
-
-    $json = '{"node":"element","tag":"html","child":[{"node":"element","tag":"body","child":[{"node":"element","tag":"div"}]}]}';
-
-    $parser = new Admin\Json_WP_Post_Parser_Parse( $this->plugin_name, $this->version );
-
-    $result = $parser->parse_content_to_json( '<div></div>' );
-    $result_fail = $parser->parse_content_to_json( '<div>A</div>' );
-
-    $this->assertEquals( $json, $result );
-    $this->assertNotEquals( $json, $result_fail );
+  public function provider_test_return_json_content() {
+    return array(
+        array( '{"node":"element","tag":"html","child":[{"node":"element","tag":"body","child":[{"node":"element","tag":"div","attr":{"id":"1","class":"foo"},"child":[{"node":"element","tag":"h2","child":[{"node":"text","text":"sample text with "},{"node":"element","tag":"code","child":[{"node":"text","text":"inline tag"}]}]},{"node":"element","tag":"pre","attr":{"id":"demo","class":"foo bar"},"child":[{"node":"text","text":"foo"}]},{"node":"element","tag":"pre","attr":{"id":"output","class":"goo"},"child":[{"node":"text","text":"goo"}]},{"node":"element","tag":"input","attr":{"id":"execute","type":"button","value":"execute"}}]}]}]}', '<div id="1" class="foo"><h2>sample text with <code>inline tag</code></h2><pre id="demo" class="foo bar">foo</pre><pre id="output" class="goo">goo</pre><input id="execute" type="button" value="execute"/></div>' ),
+        array( '{"node":"element","tag":"html","child":[{"node":"element","tag":"body","child":[{"node":"element","tag":"div"}]}]}', '<div></div>' ),
+    );
   }
 }
