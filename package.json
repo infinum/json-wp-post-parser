@@ -1,0 +1,30 @@
+{
+  "name": "json-wp-post-parser",
+  "description": "JSON Post Parser plugin parses your content and saves it as JSON available in REST posts and pages endpoints.",
+  "version": "1.0.0",
+  "author": "Infinum",
+  "private": true,
+  "main": "",
+  "scripts": {
+    "precommit": "npm run eslint src/admin/assets/js/",
+    "build": "webpack --progress"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^7.2.3",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.0",
+    "eslint": "^4.5.0",
+    "filemanager-webpack-plugin": "^1.0.11",
+    "uglifyjs-webpack-plugin": "^0.4.6",
+    "webpack": "^3.5.5"
+  },
+  "dependencies": {
+    "jquery": "^3.2.1"
+  },
+  "browserslist": [
+    "android >= 4.2",
+    "not ie < 11",
+    "last 2 versions"
+  ]
+}

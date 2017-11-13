@@ -1,0 +1,11 @@
+{
+  "SublimeLinter": {
+   "paths": {
+        "linux": [],
+        "osx": [
+          "/vendor/bin"
+        ],
+        "windows": []
+    }
+  }
+}

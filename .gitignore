@@ -4,3 +4,9 @@
 
 # Project build folder
 /build/
+
+# Vagrantfile
+Vagrantfile
+
+# Build files
+/build/
