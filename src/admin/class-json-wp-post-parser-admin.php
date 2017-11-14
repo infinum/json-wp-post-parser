@@ -112,6 +112,7 @@ class Json_WP_Post_Parser_Admin {
    */
   public function enqueue_scripts( $hook ) {
     if ( $hook === 'settings_page_json_parser_posts' ) {
+      wp_enqueue_style( $this->plugin_name, plugins_url() . '/' . $this->plugin_name . '/assets/styles/application.css', array(), $this->version, 'all' );
       wp_enqueue_script( $this->plugin_name, plugins_url() . '/' . $this->plugin_name . '/assets/scripts/application.js', array(), $this->version, false );
       wp_localize_script( $this->plugin_name, 'wpApiSettings', array(
           'root'       => esc_url_raw( rest_url() ),

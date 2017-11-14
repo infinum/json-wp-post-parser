@@ -1,0 +1,22 @@
+$color-error: #bd0505;
+$color-finish: #19a500;
+
+.processed-posts {
+  margin-bottom: 40px;
+
+  &__process-info {
+    margin-bottom: 20px;
+  }
+
+  &__process-data {
+    padding: 5px 0;
+  }
+
+  &__process-error {
+    color: $color-error;
+  }
+
+  &__process-finish {
+    color: $color-finish;
+  }
+}

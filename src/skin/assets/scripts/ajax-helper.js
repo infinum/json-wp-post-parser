@@ -17,19 +17,20 @@ const ajax = {
       data: ajaxData,
       beforeSend: (xhr) => {
         $notifElement.html('');
-        $notifElement.append(`<div>${wpApiSettings.processing}</div>`);
+        $notifElement.append(`<div class="processed-posts__process-info js-processing">${wpApiSettings.processing}</div>`);
         xhr.setRequestHeader('X-WP-Nonce', wpApiSettings.nonce);
       }
     })
       .done((data) => {
-        $notifElement.append(`<div>${data}</div>`);
+        $notifElement.append(`<div class="processed-posts__process-data">${data}</div>`);
       })
       .fail((xhr, status, error) => {
-        $notifElement.append(`<div>${wpApiSettings.error} ${xhr.status} (${ID}): ${error}</div>`);
+        $notifElement.append(`<div class="processed-posts__process-error">${wpApiSettings.error} ${xhr.status} (${ID}): ${error}</div>`);
       })
       .always(() => {
         if (finished) {
-          $notifElement.append(`<div>${wpApiSettings.finished}</div>`);
+          $('.js-processing').remove();
+          $notifElement.append(`<div class="processed-posts__process-finish">${wpApiSettings.finished}</div>`);
         }
       });
     return false;

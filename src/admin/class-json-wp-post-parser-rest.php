@@ -115,7 +115,7 @@ class Json_WP_Post_Parser_Rest {
           'ID' => $post_id,
       ) );
 
-      wp_send_json( sprintf( esc_html__( 'Object ID: %d updated', 'json-wp-post-parser' ), intval( $post_id ) ) );
+      wp_send_json( sprintf( esc_html__( '%1$s ID: #%2$d updated', 'json-wp-post-parser' ), ucfirst( get_post_type( $post_id ) ), intval( $post_id ) ) );
     }
   }
 }

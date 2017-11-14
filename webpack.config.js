@@ -1,8 +1,8 @@
 const path = require('path');
 
 const webpack = require('webpack');
-const FileManagerPlugin = require('filemanager-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const appPath = `${path.resolve(__dirname)}`;
 
@@ -10,10 +10,11 @@ const appPath = `${path.resolve(__dirname)}`;
 const pluginPath = '/src/skin';
 const pluginFullPath = `${appPath}${pluginPath}`;
 const pluginEntry = `${pluginFullPath}/assets/application.js`;
-const pluginPublicPath = `${appPath}/build/`;
+const pluginPublicPath = `${appPath}/build/assets`;
 
 // Outputs
 const outputJs = 'scripts/[name].js';
+const outputCss = 'styles/[name].css';
 
 const allModules = {
   rules: [
@@ -25,42 +26,23 @@ const allModules = {
     {
       test: /\.json$/,
       use: 'json-loader'
+    },
+    {
+      test: /\.scss$/,
+      use: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use: ['css-loader', 'sass-loader']
+      })
     }
   ]
 };
 
 const allPlugins = [
   new webpack.optimize.ModuleConcatenationPlugin(),
+  new ExtractTextPlugin(outputCss),
   new UglifyJSPlugin({
     comments: false,
     sourceMap: true
-  }),
-  new FileManagerPlugin({
-    onStart: [
-      {
-        delete: [
-          './build'
-        ]
-      },
-      {
-        copy: [
-          {source: './src', destination: './build/json-wp-post-parser/'}
-        ]
-      }
-    ],
-    onEnd: [
-      {
-        copy: [
-          {source: './build/scripts', destination: './build/json-wp-post-parser/assets/scripts'}
-        ]
-      },
-      {
-        delete: [
-          './build/json-wp-post-parser/skin',
-          './build/scripts'
-        ]
-      }
-    ]
   })
 ];
 
