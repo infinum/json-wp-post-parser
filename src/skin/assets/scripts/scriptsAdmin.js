@@ -10,7 +10,7 @@ $(function() {
     let finished = false;
     for (const ID in allPosts) {
       if (allPosts.hasOwnProperty(ID)) {
-        if (ID === allPosts.length - 1) {
+        if (parseInt(ID, 10) === parseInt(allPosts.length - 1, 10)) {
           finished = true;
         }
         ajaxHelper.ajaxResavePost(allPosts[ID], finished, $notificationElement);

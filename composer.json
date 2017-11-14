@@ -3,6 +3,7 @@
     "dealerdirect/phpcodesniffer-composer-installer": "*",
     "jakub-onderka/php-console-highlighter": "*",
     "jakub-onderka/php-parallel-lint": "*",
-    "infinum/coding-standards-wp": "*"
+    "infinum/coding-standards-wp": "*",
+    "phpunit/phpunit": "^6.4"
   }
 }

@@ -11,25 +11,30 @@ const ajax = {
       postID: ID
     };
 
+    const $finishedElement = $('.js-finished');
+    const $processingElement = $('.js-processing');
+
     $.ajax({
       type: 'POST',
       url: `${wpApiSettings.root}posts-parse-json/v1/run`,
       data: ajaxData,
       beforeSend: (xhr) => {
         $notifElement.html('');
-        $notifElement.append(`<div>${wpApiSettings.processing}</div>`);
+        $finishedElement.html('');
+        $processingElement.html(wpApiSettings.processing);
         xhr.setRequestHeader('X-WP-Nonce', wpApiSettings.nonce);
       }
     })
       .done((data) => {
-        $notifElement.append(`<div>${data}</div>`);
+        $notifElement.append(`<div class="processed-posts__process-data">${data}</div>`);
       })
       .fail((xhr, status, error) => {
-        $notifElement.append(`<div>${wpApiSettings.error} ${xhr.status} (${ID}): ${error}</div>`);
+        $notifElement.append(`<div class="processed-posts__process-error">${wpApiSettings.error} ${xhr.status} (${ID}): ${error}</div>`);
       })
       .always(() => {
         if (finished) {
-          $notifElement.append(`<div>${wpApiSettings.finished}</div>`);
+          $processingElement.html('');
+          $finishedElement.html(wpApiSettings.finished);
         }
       });
     return false;

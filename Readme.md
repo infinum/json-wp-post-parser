@@ -64,6 +64,8 @@ function my_slug_add_cpt_to_parser( $post_types ) {
 }
 ```
 
+Be aware that to access the custom post content of your custom post type, you'll have to enable its [REST capabilities](https://developer.wordpress.org/rest-api/extending-the-rest-api/adding-rest-api-support-for-custom-content-types/).
+
 ## Possible issues
 
 When using post update to update all your posts, the default number of posts that are queried is 5000. This is done to optimize query performance. Because you should never use `'posts_per_page' => -1`. If you have more than 5000 posts then open `class-json-post-parser-admin.php` and change this number on line 84.
