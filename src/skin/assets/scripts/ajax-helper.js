@@ -11,13 +11,17 @@ const ajax = {
       postID: ID
     };
 
+    const $finishedElement = $('.js-finished');
+    const $processingElement = $('.js-processing');
+
     $.ajax({
       type: 'POST',
       url: `${wpApiSettings.root}posts-parse-json/v1/run`,
       data: ajaxData,
       beforeSend: (xhr) => {
         $notifElement.html('');
-        $notifElement.append(`<div class="processed-posts__process-info js-processing">${wpApiSettings.processing}</div>`);
+        $finishedElement.html('');
+        $processingElement.html(wpApiSettings.processing);
         xhr.setRequestHeader('X-WP-Nonce', wpApiSettings.nonce);
       }
     })
@@ -29,8 +33,8 @@ const ajax = {
       })
       .always(() => {
         if (finished) {
-          $('.js-processing').remove();
-          $notifElement.append(`<div class="processed-posts__process-finish">${wpApiSettings.finished}</div>`);
+          $processingElement.html('');
+          $finishedElement.html(wpApiSettings.finished);
         }
       });
     return false;

@@ -95,10 +95,12 @@ class Json_WP_Post_Parser_Admin {
       wp_reset_postdata();
     }
     ?>
-    <div class="wrap">
+    <div class="wrap processed-posts">
       <h2><?php esc_html_e( 'Resave posts', 'json-wp-post-parser' ); ?></h2>
-      <div class="info" style="margin-bottom:20px;"><?php esc_html_e( 'This will resave all your existing posts and pages, including any custom post type you might have.', 'json-wp-post-parser' ); ?></div>
+      <div class="processed-posts__process-info"><?php esc_html_e( 'This will resave all your existing posts and pages, including any custom post type you might have.', 'json-wp-post-parser' ); ?></div>
+      <div class="processed-posts__process-info js-processing"></div>
       <div class="processed-posts js-processed-posts" data-posts="<?php echo wp_kses_post( wp_json_encode( $posts_array ) ); ?>"></div>
+      <div class="processed-posts__process-finish js-finished"></div>
       <button class="button button-primary js-start-post-resave"><?php esc_html_e( 'Start resaving', 'json-wp-post-parser' ); ?></button>
     </div>
     <?php
