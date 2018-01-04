@@ -5,13 +5,13 @@
  * Dynamically loads the class attempting to be instantiated elsewhere in the
  * plugin.
  *
- * Used code from https://github.com/tommcfarlin/namespaces-and-autoloading-in-wordpress
+ * Used and modified code from https://github.com/tommcfarlin/namespaces-and-autoloading-in-wordpress
  * Props to tommcfarlin <tom@tommcfarlin.com>
  *
- * @link       https://infinum.co/careers
- * @since      1.0.0
+ * @link    https://infinum.co/careers
+ * @since   1.0.0
  *
- * @package    Json_WP_Post_Parser\Lib
+ * @package Json_WP_Post_Parser\Lib
  */
 
 namespace Json_WP_Post_Parser\Lib;
@@ -44,7 +44,7 @@ function json_wp_post_parser_autoloader( $filename ) {
 
   $file_count = count( $file_path );
   for ( $i = 1; $i < $file_count - 1; $i++ ) {
-    $dir = strtolower( $file_path[ $i ] );
+    $dir = str_ireplace( '_', '-', strtolower( $file_path[ $i ] ) );
     $fully_qualified_path .= trailingslashit( $dir );
   }
 
@@ -52,6 +52,6 @@ function json_wp_post_parser_autoloader( $filename ) {
 
   // Now we include the file.
   if ( file_exists( $fully_qualified_path ) ) {
-    include_once( $fully_qualified_path );
+    require_once( $fully_qualified_path );
   }
 }
