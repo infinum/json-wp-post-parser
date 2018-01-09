@@ -20,12 +20,12 @@ spl_autoload_register( __NAMESPACE__ . '\\json_wp_post_parser_autoloader' );
 
 /**
  * Dynamically loads the class attempting to be instantiated elsewhere in the
- * plugin by looking at the $filename parameter being passed as an argument.
+ * plugin by looking at the $class_name parameter being passed as an argument.
  *
- * @param string $filename The fully-qualified name of the file that contains the class.
+ * @param string $class_name The fully-qualified name of the class to instantiate.
  */
-function json_wp_post_parser_autoloader( $filename ) {
-  $file_path = explode( '\\', $filename );
+function json_wp_post_parser_autoloader( $class_name ) {
+  $file_path = explode( '\\', $class_name );
 
   if ( isset( $file_path[ count( $file_path ) - 1 ] ) ) {
     $class_file = strtolower(
