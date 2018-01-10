@@ -1,9 +1,26 @@
 {
+  "name": "infinum/json-wp-post-parser",
+  "type": "wordpress-plugin",
+  "description": "JSON Post Parser plugin parses your content and saves it as JSON available in REST posts and pages endpoints.",
+  "keywords": ["plugin", "WordPress", "json", "REST API", "parser"],
+  "homepage": "https://github.com/infinum/json-wp-post-parser/",
+  "license": "GPL-2.0",
+  "authors": [
+    {
+      "name"    : "Contributors",
+      "homepage": "https://github.com/infinum/json-wp-post-parser/graphs/contributors"
+    }
+  ],
   "require-dev": {
     "dealerdirect/phpcodesniffer-composer-installer": "*",
     "jakub-onderka/php-console-highlighter": "*",
     "jakub-onderka/php-parallel-lint": "*",
     "infinum/coding-standards-wp": "*",
     "phpunit/phpunit": "^6.4"
+  },
+  "support"    : {
+    "issues": "https://github.com/infinum/json-wp-post-parser/issues",
+    "wiki"  : "https://github.com/infinum/json-wp-post-parser/wiki",
+    "source": "https://github.com/infinum/json-wp-post-parser"
   }
 }
