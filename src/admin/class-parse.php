@@ -19,7 +19,7 @@ namespace Json_WP_Post_Parser\Admin;
  * @package    Json_WP_Post_Parser\Admin
  * @author     Infinum <info@infinum.co>
  */
-class Json_WP_Post_Parser_Parse {
+class Parse {
 
   /**
    * The ID of this plugin.

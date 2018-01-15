@@ -20,7 +20,7 @@ namespace Json_WP_Post_Parser\Includes;
  * @package    Json_WP_Post_Parser\Includes
  * @author     Infinum <info@infinum.co>
  */
-class Json_WP_Post_Parser_Loader {
+class Loader {
 
   /**
    * The array of actions registered with WordPress.

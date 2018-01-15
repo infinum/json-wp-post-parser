@@ -39,7 +39,7 @@ class Parsed_Content extends WP_UnitTestCase {
    */
   public function test_result_type() {
 
-    $parser = new Admin\Json_WP_Post_Parser_Parse( $this->plugin_name, $this->version );
+    $parser = new Admin\Parse( $this->plugin_name, $this->version );
 
     $result = $parser->parse_content_to_json( '<div id="test">This is a test.</div>' );
 
@@ -55,7 +55,7 @@ class Parsed_Content extends WP_UnitTestCase {
    */
   public function test_method_type() {
 
-    $parser = new Admin\Json_WP_Post_Parser_Parse( $this->plugin_name, $this->version );
+    $parser = new Admin\Parse( $this->plugin_name, $this->version );
 
     $this->assertTrue( method_exists( $parser , 'parse_content_to_json' ) );
   }
@@ -73,7 +73,7 @@ class Parsed_Content extends WP_UnitTestCase {
    */
   public function test_html_content( $provided_json, $provided_html ) {
 
-    $parser = new Admin\Json_WP_Post_Parser_Parse( $this->plugin_name, $this->version );
+    $parser = new Admin\Parse( $this->plugin_name, $this->version );
 
     $result_json = $parser->parse_content_to_json( $provided_html );
 

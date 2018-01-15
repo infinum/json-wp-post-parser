@@ -16,7 +16,7 @@
 
 namespace Json_WP_Post_Parser\Lib;
 
-spl_autoload_register( __NAMESPACE__ . '\\json_wp_post_parser_autoloader' );
+spl_autoload_register( __NAMESPACE__ . '\\autoloader' );
 
 /**
  * Dynamically loads the class attempting to be instantiated elsewhere in the
@@ -24,7 +24,7 @@ spl_autoload_register( __NAMESPACE__ . '\\json_wp_post_parser_autoloader' );
  *
  * @param string $class_name The fully-qualified name of the class to instantiate.
  */
-function json_wp_post_parser_autoloader( $class_name ) {
+function autoloader( $class_name ) {
   $file_path = explode( '\\', $class_name );
 
   if ( isset( $file_path[ count( $file_path ) - 1 ] ) ) {

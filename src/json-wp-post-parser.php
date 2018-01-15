@@ -68,7 +68,7 @@ function json_wp_post_parser_activation_notice() {
  */
 function activate_json_wp_post_parser() {
   require_once plugin_dir_path( __FILE__ ) . 'includes/class-json-wp-post-parser-activator.php';
-  Includes\Json_WP_Post_Parser_Activator::activate();
+  Includes\Activator::activate();
 }
 
 /**
@@ -77,7 +77,7 @@ function activate_json_wp_post_parser() {
  */
 function deactivate_json_wp_post_parser() {
   require_once plugin_dir_path( __FILE__ ) . 'includes/class-json-wp-post-parser-deactivator.php';
-  Includes\Json_WP_Post_Parser_Deactivator::deactivate();
+  Includes\Deactivator::deactivate();
 }
 
 register_activation_hook( __FILE__, __NAMESPACE__ . '\\activate_json_wp_post_parser' );

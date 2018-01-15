@@ -1,5 +1,7 @@
 ### JSON post parser
 
+[![Build Status](https://travis-ci.org/infinum/json-wp-post-parser.svg?branch=master)](https://travis-ci.org/infinum/json-wp-post-parser)
+
 JSON Post Parser plugin parses your content and saves it as JSON available in REST posts and pages endpoints.
 
 ## Description
@@ -32,6 +34,18 @@ npm run build
 ### Unit tests
 
 All the unit tests are located in the `\tests` folder. The unit testing is done via [PHPUnit](https://phpunit.de/). Feel free to add you own tests or check the existing one.
+
+To initialize the testing environment locally go to the project root (where `phpunit.xml` resides) and run
+
+```sh
+bin/install-wp-tests.sh wordpress_unit_tests root '' localhost latest
+```
+
+After that you can run plugin tests by writing
+
+```sh
+phpunit
+```
 
 ## WordPress Installation
 

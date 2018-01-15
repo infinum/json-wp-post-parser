@@ -23,7 +23,7 @@ namespace Json_WP_Post_Parser\Includes;
  * @package    Json_WP_Post_Parser\Includes
  * @author     Infinum <info@infinum.co>
  */
-class Json_WP_Post_Parser_i18n {
+class Internationalization {
 
   /**
    * Load the plugin text domain for translation.
