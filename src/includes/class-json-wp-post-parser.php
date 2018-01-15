@@ -95,20 +95,20 @@ class Json_WP_Post_Parser {
    * @access   private
    */
   private function load_dependencies() {
-    $this->loader = new Json_WP_Post_Parser_Loader();
+    $this->loader = new Loader();
   }
 
   /**
    * Define the locale for this plugin for internationalization.
    *
-   * Uses the Json_WP_Post_Parser_i18n class in order to set the domain and to register the hook
+   * Uses the i18n class in order to set the domain and to register the hook
    * with WordPress.
    *
    * @since    1.0.0
    * @access   private
    */
   private function set_locale() {
-    $plugin_i18n = new Json_WP_Post_Parser_i18n();
+    $plugin_i18n = new Internationalization();
 
     $this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
   }
@@ -121,8 +121,8 @@ class Json_WP_Post_Parser {
    * @access   private
    */
   private function define_admin_hooks() {
-    $plugin_admin = new Admin\Json_WP_Post_Parser_Admin( $this->get_plugin_name(), $this->get_version() );
-    $plugin_parse = new Admin\Json_WP_Post_Parser_Parse( $this->get_plugin_name(), $this->get_version() );
+    $plugin_admin = new Admin\Admin( $this->get_plugin_name(), $this->get_version() );
+    $plugin_parse = new Admin\Parse( $this->get_plugin_name(), $this->get_version() );
 
     $this->loader->add_action( 'save_post', $plugin_parse, 'update_post_json_content', 10, 3 );
     $this->loader->add_action( 'admin_menu', $plugin_admin, 'add_posts_parse_page' );
@@ -136,7 +136,7 @@ class Json_WP_Post_Parser {
    * @access   private
    */
   private function register_rest_routes() {
-    $plugin_rest = new Admin\Json_WP_Post_Parser_Rest( $this->get_plugin_name(), $this->get_version() );
+    $plugin_rest = new Admin\Rest_Functionality( $this->get_plugin_name(), $this->get_version() );
 
     $this->loader->add_action( 'rest_api_init', $plugin_rest, 'api_fields_init' );
   }

@@ -19,7 +19,7 @@ namespace Json_WP_Post_Parser\Includes;
  * @package    Json_WP_Post_Parser\Includes
  * @author     Infinum <info@infinum.co>
  */
-class Json_WP_Post_Parser_Activator {
+class Activator {
 
   /**
    * Create post column if it doesn't exist.
