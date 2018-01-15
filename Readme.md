@@ -1,6 +1,4 @@
-### JSON post parser
-
-[![Build Status](https://travis-ci.org/infinum/json-wp-post-parser.svg?branch=master)](https://travis-ci.org/infinum/json-wp-post-parser)
+# JSON post parser [![Build Status](https://travis-ci.org/infinum/json-wp-post-parser.svg?branch=master)](https://travis-ci.org/infinum/json-wp-post-parser)
 
 JSON Post Parser plugin parses your content and saves it as JSON available in REST posts and pages endpoints.
 
