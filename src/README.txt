@@ -2,8 +2,8 @@
 Contributors: dingo_bastard
 Tags: post, parser, content
 Requires at least: 4.4
-Tested up to: 4.8.3
-Stable tag: 1.0.0
+Tested up to: 4.9.4
+Stable tag: 1.0.6
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -24,6 +24,17 @@ If you want to expose your own custom post types to the REST endpoint, use the f
 
 1. Place `json-wp-post-parser` folder in the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
+
+== Other usages ==
+
+You can use parse methods in other plugins if you want to. Once you install the plugin you can use the `parse_content_to_json()` method to parse HTML to json parsed content.
+
+```php
+
+$parser = new \Json_WP_Post_Parser\Admin\Parse();
+
+$parsed_content = $parser->parse_content_to_json( $html_content );
+```
 
 == Frequently Asked Questions ==
 
@@ -61,6 +72,9 @@ When using post update to update all your posts, the default number of posts tha
 = 1.0.5 =
 * Linter fixes
 * Class name fixes
+
+= 1.0.6 =
+* Minor class fixes
 
 == Credits ==
 

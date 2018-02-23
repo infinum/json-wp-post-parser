@@ -11,25 +11,6 @@ use Json_WP_Post_Parser\Admin;
  * Class that tests for parsed content
  */
 class Parsed_Content extends WP_UnitTestCase {
-
-  /**
-   * The ID of this plugin.
-   *
-   * @since    1.0.0
-   * @access   private
-   * @var      string    $plugin_name    The ID of this plugin.
-   */
-  private $plugin_name = 'json-wp-post-parser';
-
-  /**
-   * The version of this plugin.
-   *
-   * @since    1.0.0
-   * @access   private
-   * @var      string    $version    The current version of this plugin.
-   */
-  private $version = '1.0.0';
-
   /**
    * Test the content type
    *
@@ -39,7 +20,7 @@ class Parsed_Content extends WP_UnitTestCase {
    */
   public function test_result_type() {
 
-    $parser = new Admin\Parse( $this->plugin_name, $this->version );
+    $parser = new Admin\Parse();
 
     $result = $parser->parse_content_to_json( '<div id="test">This is a test.</div>' );
 
@@ -55,7 +36,7 @@ class Parsed_Content extends WP_UnitTestCase {
    */
   public function test_method_type() {
 
-    $parser = new Admin\Parse( $this->plugin_name, $this->version );
+    $parser = new Admin\Parse();
 
     $this->assertTrue( method_exists( $parser , 'parse_content_to_json' ) );
   }
@@ -73,7 +54,7 @@ class Parsed_Content extends WP_UnitTestCase {
    */
   public function test_html_content( $provided_json, $provided_html ) {
 
-    $parser = new Admin\Parse( $this->plugin_name, $this->version );
+    $parser = new Admin\Parse();
 
     $result_json = $parser->parse_content_to_json( $provided_html );
 
