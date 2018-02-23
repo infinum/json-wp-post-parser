@@ -95,6 +95,10 @@ When using post update to update all your posts, the default number of posts tha
 * Linter fixes
 * Class name fixes
 
+### 1.0.6
+
+* Minor class fixes
+
 ## Credits
 
 JSON post parser is maintained and sponsored by

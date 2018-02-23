@@ -71,7 +71,7 @@ class Json_WP_Post_Parser {
     if ( defined( 'JWPP_PLUGIN_VERSION' ) ) {
       $this->version = JWPP_PLUGIN_VERSION;
     } else {
-      $this->version = '1.0.5';
+      $this->version = '1.0.6';
     }
 
     if ( defined( 'JWPP_PLUGIN_NAME' ) ) {
@@ -123,7 +123,7 @@ class Json_WP_Post_Parser {
    */
   private function define_admin_hooks() {
     $plugin_admin = new Admin\Admin( $this->get_plugin_name(), $this->get_version() );
-    $plugin_parse = new Admin\Parse( $this->get_plugin_name(), $this->get_version() );
+    $plugin_parse = new Admin\Parse();
 
     $this->loader->add_action( 'save_post', $plugin_parse, 'update_post_json_content', 10, 3 );
     $this->loader->add_action( 'admin_menu', $plugin_admin, 'add_posts_parse_page' );
@@ -137,7 +137,7 @@ class Json_WP_Post_Parser {
    * @access   private
    */
   private function register_rest_routes() {
-    $plugin_rest = new Admin\Rest_Functionality( $this->get_plugin_name(), $this->get_version() );
+    $plugin_rest = new Admin\Rest_Functionality();
 
     $this->loader->add_action( 'rest_api_init', $plugin_rest, 'api_fields_init' );
   }
