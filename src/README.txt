@@ -25,6 +25,17 @@ If you want to expose your own custom post types to the REST endpoint, use the f
 1. Place `json-wp-post-parser` folder in the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 
+== Other usages ==
+
+You can use parse methods in other plugins if you want to. Once you install the plugin you can use the `parse_content_to_json()` method to parse HTML to json parsed content.
+
+```php
+
+$parser = new \Json_WP_Post_Parser\Admin\Parse();
+
+$parsed_content = $parser->parse_content_to_json( $html_content );
+```
+
 == Frequently Asked Questions ==
 
 = Will all my posts automatically be parsed? =
