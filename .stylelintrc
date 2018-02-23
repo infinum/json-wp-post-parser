@@ -1,0 +1,6 @@
+{
+  "extends": "@infinumjs/stylelint-config",
+  "ignoreFiles": [
+    "build/**/*.css",
+  ]
+}

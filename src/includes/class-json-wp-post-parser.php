@@ -12,6 +12,7 @@
  */
 
 namespace Json_WP_Post_Parser\Includes;
+
 use Json_WP_Post_Parser\Admin as Admin;
 
 /**
@@ -70,7 +71,7 @@ class Json_WP_Post_Parser {
     if ( defined( 'JWPP_PLUGIN_VERSION' ) ) {
       $this->version = JWPP_PLUGIN_VERSION;
     } else {
-      $this->version = '1.0.0';
+      $this->version = '1.0.5';
     }
 
     if ( defined( 'JWPP_PLUGIN_NAME' ) ) {

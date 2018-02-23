@@ -40,10 +40,16 @@ const allModules = {
 const allPlugins = [
   new webpack.optimize.ModuleConcatenationPlugin(),
   new ExtractTextPlugin(outputCss),
-  new UglifyJSPlugin({
-    comments: false,
-    sourceMap: true
-  })
+  new webpack.optimize.UglifyJsPlugin({
+    output: {
+      comments: false,
+    },
+    compress: {
+      warnings: false,
+      drop_console: true, // eslint-disable-line camelcase
+    },
+    sourceMap: true,
+  }),
 ];
 
 module.exports = [

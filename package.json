@@ -6,33 +6,36 @@
   "private": true,
   "main": "",
   "scripts": {
-    "precommit": "npm run eslint src/admin/assets/js/",
+    "precommit": "eslint src/skin/assets/scripts/*.js && stylelint \"src/skin/assets/styles/**/*.scss\" --syntax scss && phpcs --standard=Infinum src/",
     "webpack": "webpack --progress",
     "build": "gulp build"
   },
   "devDependencies": {
+    "@infinumjs/eslint-config": "^1.1.0",
+    "@infinumjs/stylelint-config": "^1.0.0",
     "babel-core": "^6.26.0",
-    "babel-eslint": "^7.2.3",
+    "babel-eslint": "^8.2.2",
     "babel-loader": "^7.1.2",
-    "babel-preset-env": "^1.6.0",
-    "css-loader": "^0.28.7",
+    "babel-preset-env": "^1.6.1",
+    "css-loader": "^0.28.10",
     "del": "^3.0.0",
-    "eslint": "^4.5.0",
+    "eslint": "^4.18.1",
     "extract-text-webpack-plugin": "^3.0.2",
-    "gulp-phpunit": "^0.24.1",
-    "gulp-print": "^2.0.1",
-    "node-sass": "^4.6.1",
-    "run-sequence": "^2.2.0",
+    "gulp-phpunit": "^0.25.0",
+    "gulp-print": "^5.0.0",
+    "node-sass": "^4.7.2",
+    "run-sequence": "^2.2.1",
     "sass-loader": "^6.0.6",
-    "style-loader": "^0.19.0",
-    "uglifyjs-webpack-plugin": "^0.4.6",
+    "style-loader": "^0.20.2",
+    "stylelint": "^9.1.1",
+    "uglifyjs-webpack-plugin": "^1.2.0",
     "vinyl-paths": "^2.1.0",
-    "webpack": "^3.5.5",
-    "webpack-stream": "^4.0.0"
+    "webpack": "^3.11.0",
+    "webpack-stream": "^4.0.2"
   },
   "dependencies": {
     "gulp": "^3.9.1",
-    "jquery": "^3.2.1"
+    "jquery": "^3.3.1"
   },
   "browserslist": [
     "android >= 4.2",

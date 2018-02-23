@@ -51,12 +51,16 @@ function my_slug_add_cpt_to_parser( $post_types ) {
 
 == Possible issues ==
 
-When using post update to update all your posts, the default number of posts that are queried is 5000. This is done to optimize query performance. Because you should never use `'posts_per_page' => -1`. If you have more than 5000 posts then open `class-json-wp-post-parser-admin.php` and change this number on line 84.
+When using post update to update all your posts, the default number of posts that are queried is 500. This is done to optimize query performance. Because you should never use `'posts_per_page' => -1`. If you have more than 500 posts then open `class-admin.php` and change this number on line 84.
 
 == Changelog ==
 
-= 1.0 =
+= 1.0.0 =
 * Initial release
+
+= 1.0.5 =
+* Linter fixes
+* Class name fixes
 
 == Credits ==
 

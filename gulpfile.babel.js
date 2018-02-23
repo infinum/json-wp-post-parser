@@ -3,7 +3,7 @@ const project = 'json-wp-post-parser';
 
 const gulp = require('gulp');
 const phpunit = require('gulp-phpunit');
-const gprint = require('gulp-print');
+const gprint = require('gulp-print').default;
 const del = require('del');
 const vinylPaths = require('vinyl-paths');
 const runSequence = require('run-sequence');
