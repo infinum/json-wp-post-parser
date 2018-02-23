@@ -47,7 +47,7 @@ class Rest_Functionality {
    */
   public function __construct( $plugin_name, $version ) {
     $this->plugin_name = $plugin_name;
-    $this->version = $version;
+    $this->version     = $version;
   }
 
   /**
@@ -57,6 +57,7 @@ class Rest_Functionality {
    */
   public function api_fields_init() {
     $post_types = array( 'post', 'page' );
+
     if ( has_filter( 'json_wp_post_parser_add_post_types' ) ) {
       $post_types = apply_filters( 'json_wp_post_parser_add_post_types', $post_types );
     }
@@ -84,7 +85,7 @@ class Rest_Functionality {
    * @param  object $object Post object array.
    * @return [type]         [description]
    */
-  function get_post_json_content( $object ) {
+  public function get_post_json_content( $object ) {
     global $wpdb;
     $post_id = $object['id'];
 
@@ -104,7 +105,7 @@ class Rest_Functionality {
 
     if ( ! wp_verify_nonce( $headers['x_wp_nonce'][0], 'wp_rest' ) ) {
       $message = esc_html__( 'Nonce error', 'json-wp-post-parser' );
-      $error = new \WP_Error( '-1', $message );
+      $error   = new \WP_Error( '-1', $message );
       wp_send_json_error( $error );
     }
 

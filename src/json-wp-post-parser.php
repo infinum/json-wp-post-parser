@@ -11,7 +11,7 @@
  * Plugin Name:       JSON post parser
  * Plugin URI:        http://infinum.co
  * Description:       Parse post and pages content as JSON and serve it in default REST endpoint.
- * Version:           1.0.0
+ * Version:           1.0.5
  * Author:            Infinum
  * Author URI:        https://infinum.co/careers
  * License:           GPL-2.0+
@@ -20,6 +20,7 @@
  */
 
 namespace Json_WP_Post_Parser;
+
 use Json_WP_Post_Parser\Includes as Includes;
 
 // If this file is called directly, abort.
@@ -27,11 +28,11 @@ if ( ! defined( 'WPINC' ) ) {
   die;
 }
 
-define( 'JWPP_PLUGIN_VERSION', '1.0.0' );
+define( 'JWPP_PLUGIN_VERSION', '1.0.5' );
 define( 'JWPP_PLUGIN_NAME', 'json-wp-post-parser' );
 
 // Include the autoloader so we can dynamically include the rest of the classes.
-include_once( 'lib/autoloader.php' );
+require_once 'lib/autoloader.php';
 
 add_action( 'admin_init', __NAMESPACE__ . '\\json_wp_post_parser_add_activation_notice' );
 

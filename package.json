@@ -6,11 +6,13 @@
   "private": true,
   "main": "",
   "scripts": {
-    "precommit": "npm run eslint src/admin/assets/js/",
+    "precommit": "eslint src/skin/assets/scripts/*.js && stylelint \"src/skin/assets/styles/**/*.scss\" --syntax scss && phpcs --standard=Infinum src/",
     "webpack": "webpack --progress",
     "build": "gulp build"
   },
   "devDependencies": {
+    "@infinumjs/eslint-config": "^1.1.0",
+    "@infinumjs/stylelint-config": "^1.0.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.2",
     "babel-loader": "^7.1.2",
@@ -25,6 +27,7 @@
     "run-sequence": "^2.2.1",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.20.2",
+    "stylelint": "^9.1.1",
     "uglifyjs-webpack-plugin": "^1.2.0",
     "vinyl-paths": "^2.1.0",
     "webpack": "^3.11.0",

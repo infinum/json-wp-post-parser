@@ -8,7 +8,7 @@ const ajax = {
     }
 
     const ajaxData = {
-      postID: ID
+      postID: ID,
     };
 
     const $finishedElement = $('.js-finished');
@@ -23,7 +23,7 @@ const ajax = {
         $finishedElement.html('');
         $processingElement.html(wpApiSettings.processing);
         xhr.setRequestHeader('X-WP-Nonce', wpApiSettings.nonce);
-      }
+      },
     })
       .done((data) => {
         $notifElement.append(`<div class="processed-posts__process-data">${data}</div>`);
@@ -38,7 +38,7 @@ const ajax = {
         }
       });
     return false;
-  }
+  },
 };
 
 export default ajax;

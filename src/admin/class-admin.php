@@ -48,7 +48,7 @@ class Admin {
    */
   public function __construct( $plugin_name, $version ) {
       $this->plugin_name = $plugin_name;
-      $this->version = $version;
+      $this->version     = $version;
   }
 
   /**
@@ -81,10 +81,10 @@ class Admin {
     $all_posts_args = array(
         'post_type'      => $post_types,
         'post_status'    => 'publish',
-        'posts_per_page' => 5000,
+        'posts_per_page' => 500,
     );
 
-    $all_posts = new \WP_Query( $all_posts_args );
+    $all_posts   = new \WP_Query( $all_posts_args );
     $posts_array = [];
 
     if ( $all_posts->have_posts() ) {

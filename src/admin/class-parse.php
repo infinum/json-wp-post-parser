@@ -48,7 +48,7 @@ class Parse {
    */
   public function __construct( $plugin_name, $version ) {
       $this->plugin_name = $plugin_name;
-      $this->version = $version;
+      $this->version     = $version;
   }
 
   /**
@@ -66,7 +66,7 @@ class Parse {
       // Remove newlines. If we don't do this, json has tons of empty texts that notify the newlines.
       $post_content_lines = str_replace( array( "\r\n", "\r" ), "\n", apply_filters( 'the_content', $post->post_content ) );
 
-      $lines = explode( "\n", $post_content_lines );
+      $lines     = explode( "\n", $post_content_lines );
       $new_lines = array();
 
       foreach ( $lines as $i => $line ) {
@@ -80,7 +80,7 @@ class Parse {
       if ( ! empty( $post_content ) ) {
         // Remove hidden characters from the post content.
         $new_post_content = preg_replace( '/\s\s/', ' ', preg_replace( '/[^\x00-\x7F]/', ' ', $post_content ) );
-        $dom_json = $this->parse_content_to_json( $new_post_content );
+        $dom_json         = $this->parse_content_to_json( $new_post_content );
         $wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET post_content_json = %s WHERE ID = %d", $dom_json, $post_id ) );
       }
     }

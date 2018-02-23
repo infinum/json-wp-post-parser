@@ -36,7 +36,7 @@ function autoloader( $class_name ) {
     $class_file = "class-$class_file.php";
   }
 
-  $fully_qualified_path = trailingslashit(
+  $full_path = trailingslashit(
     dirname(
       dirname( __FILE__ )
     )
@@ -44,14 +44,14 @@ function autoloader( $class_name ) {
 
   $file_count = count( $file_path );
   for ( $i = 1; $i < $file_count - 1; $i++ ) {
-    $dir = str_ireplace( '_', '-', strtolower( $file_path[ $i ] ) );
-    $fully_qualified_path .= trailingslashit( $dir );
+    $dir        = str_ireplace( '_', '-', strtolower( $file_path[ $i ] ) );
+    $full_path .= trailingslashit( $dir );
   }
 
-  $fully_qualified_path .= $class_file;
+  $full_path .= $class_file;
 
   // Now we include the file.
-  if ( file_exists( $fully_qualified_path ) ) {
-    require_once( $fully_qualified_path );
+  if ( file_exists( $full_path ) ) {
+    require_once $full_path;
   }
 }
