@@ -22,7 +22,6 @@ npm install
 
 ```sh
 composer install
-vendor/bin/phpcs --config-set installed_paths ../../wp-coding-standards/wpcs
 ```
 
 ### Build
