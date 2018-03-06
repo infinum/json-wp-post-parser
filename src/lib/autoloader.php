@@ -6,11 +6,9 @@
  * plugin.
  *
  * Used and modified code from https://github.com/tommcfarlin/namespaces-and-autoloading-in-wordpress
- * Props to tommcfarlin <tom@tommcfarlin.com>
  *
- * @link    https://infinum.co/careers
+ * @since   1.0.7 Fixed the autloader so that it works with dependency injections.
  * @since   1.0.0
- *
  * @package Json_WP_Post_Parser\Lib
  */
 
@@ -22,7 +20,9 @@ spl_autoload_register( __NAMESPACE__ . '\\autoloader' );
  * Dynamically loads the class attempting to be instantiated elsewhere in the
  * plugin by looking at the $class_name parameter being passed as an argument.
  *
- * @param string $class_name The fully-qualified name of the class to instantiate.
+ * @param string $class_name The fully-qualified name of the file that contains the class.
+ *
+ * @since 1.0.0
  */
 function autoloader( $class_name ) {
   $file_path = explode( '\\', $class_name );
@@ -36,14 +36,18 @@ function autoloader( $class_name ) {
     $class_file = "class-$class_file.php";
   }
 
+  // Path to the plugins folder.
   $full_path = trailingslashit(
     dirname(
-      dirname( __FILE__ )
+      dirname(
+        dirname( __FILE__ )
+      )
     )
   );
 
   $file_count = count( $file_path );
-  for ( $i = 1; $i < $file_count - 1; $i++ ) {
+
+  for ( $i = 0; $i < $file_count - 1; $i++ ) {
     $dir        = str_ireplace( '_', '-', strtolower( $file_path[ $i ] ) );
     $full_path .= trailingslashit( $dir );
   }
