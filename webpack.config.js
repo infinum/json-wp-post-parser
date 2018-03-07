@@ -7,7 +7,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const appPath = `${path.resolve(__dirname)}`;
 
 // Entry
-const pluginPath = '/src/skin';
+const pluginPath = '/src/json-wp-post-parser/skin';
 const pluginFullPath = `${appPath}${pluginPath}`;
 const pluginEntry = `${pluginFullPath}/assets/application.js`;
 const pluginPublicPath = `${appPath}/build/assets`;
