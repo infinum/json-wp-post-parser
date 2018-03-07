@@ -3,7 +3,7 @@ import $ from 'jquery';
 
 const ajax = {
   ajaxResavePost(ID, finished, $notifElement) {
-    if (typeof $notifElement === 'undefined') {
+    if (typeof $notifElement === 'undefined') {;
       return false;
     }
 

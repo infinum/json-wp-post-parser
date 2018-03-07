@@ -10,9 +10,9 @@ const webpack = require('webpack');
 const webpackConfig = require('./webpack.config.js');
 
 const paths = {
-  src: './src/',
+  src: './src/json-wp-post-parser/',
   build: './build/',
-  entry: './src/skin/assets/application.js'
+  entry: './src/json-wp-post-parser/skin/assets/application.js'
 };
 
 gulp.task('clean', () => (

@@ -94,7 +94,7 @@ register_deactivation_hook( __FILE__, __NAMESPACE__ . '\\deactivate_plugin' );
  * @since    1.0.0
  */
 function run() {
-  $plugin = new Includes\Json_WP_Post_Parser();
+  $plugin = new Includes\Main();
   $plugin->run();
 }
 
