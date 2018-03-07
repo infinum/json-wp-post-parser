@@ -18,7 +18,13 @@ If you want to expose your own custom post types to the REST endpoint, use the f
 ## Development Setup
 
 ```sh
-npm install
+npm i
+```
+
+or
+
+```sh
+yarn
 ```
 
 ```sh
@@ -107,18 +113,24 @@ When using post update to update all your posts, the default number of posts tha
 
 ## Changelog
 
-### 1.0
+### 1.0.7
 
-* Initial release
+* Autoloader fix
+* Removed unused packages
+* Fix the unit testing
+
+### 1.0.6
+
+* Minor class fixes
 
 ### 1.0.5
 
 * Linter fixes
 * Class name fixes
 
-### 1.0.6
+### 1.0
 
-* Minor class fixes
+* Initial release
 
 ## Credits
 

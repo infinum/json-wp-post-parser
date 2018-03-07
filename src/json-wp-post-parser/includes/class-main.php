@@ -6,6 +6,8 @@
  * public-facing side of the site and the admin area.
  *
  * @link       https://infinum.co/careers
+ *
+ * @since      1.0.7 Renamed class to Main
  * @since      1.0.0
  *
  * @package    Json_WP_Post_Parser\Includes
@@ -71,7 +73,7 @@ class Main {
     if ( defined( 'JWPP_PLUGIN_VERSION' ) ) {
       $this->version = JWPP_PLUGIN_VERSION;
     } else {
-      $this->version = '1.0.6';
+      $this->version = '1.0.7';
     }
 
     if ( defined( 'JWPP_PLUGIN_NAME' ) ) {
