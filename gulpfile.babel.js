@@ -2,7 +2,6 @@
 const project = 'json-wp-post-parser';
 
 const gulp = require('gulp');
-const phpunit = require('gulp-phpunit');
 const gprint = require('gulp-print').default;
 const del = require('del');
 const vinylPaths = require('vinyl-paths');
@@ -20,11 +19,6 @@ gulp.task('clean', () => (
   gulp.src(`${paths.build}*`)
     .pipe(gprint())
     .pipe(vinylPaths(del))
-));
-
-gulp.task('phpunit', () => (
-  gulp.src('phpunit.xml')
-    .pipe(phpunit())
 ));
 
 gulp.task('webpack', () => (

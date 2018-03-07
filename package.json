@@ -21,7 +21,6 @@
     "del": "^3.0.0",
     "eslint": "^4.18.2",
     "extract-text-webpack-plugin": "^3.0.2",
-    "gulp-phpunit": "^0.25.0",
     "gulp-print": "^5.0.0",
     "node-sass": "^4.7.2",
     "run-sequence": "^2.2.1",

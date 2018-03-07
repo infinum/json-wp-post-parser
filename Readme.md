@@ -46,13 +46,15 @@ All the unit tests are located in the `\tests` folder. The unit testing is done 
 To initialize the testing environment locally go to the project root (where `phpunit.xml` resides) and run
 
 ```sh
-bin/install-wp-tests.sh wordpress_unit_tests root '' localhost latest
+sh bin/install-wp-tests.sh wordpress_test root '' 127.0.0.1 latest
 ```
+
+This should create a temporary WordPress installation in the `/private/tmp/wordpress` folder. Be sure to set up the `wp-config.php` in the test WordPress install.
 
 After that you can run plugin tests by writing
 
 ```sh
-phpunit
+vendor/bin/phpunit
 ```
 
 ## WordPress Installation

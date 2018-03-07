@@ -28,7 +28,7 @@ use Json_WP_Post_Parser\Admin as Admin;
  * @package    Json_WP_Post_Parser\Includes
  * @author     Infinum <info@infinum.co>
  */
-class Json_WP_Post_Parser {
+class Main {
 
   /**
    * The loader that's responsible for maintaining and registering all hooks that power
