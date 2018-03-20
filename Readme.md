@@ -41,7 +41,7 @@ npm run build
 
 ### Unit tests
 
-All the unit tests are located in the `\tests` folder. The unit testing is done via [PHPUnit](https://phpunit.de/). Feel free to add you own tests or check the existing one.
+All the unit tests are located in the `\tests` folder. The unit testing is done via [PHPUnit](https://phpunit.de/). Feel free to add you own tests or check the existing one. You need to have at the most PHPUnit 6 for the tests to pass.
 
 To initialize the testing environment locally go to the project root (where `phpunit.xml` resides) and run
 
