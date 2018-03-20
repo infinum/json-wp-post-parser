@@ -53,7 +53,6 @@ function autoloader( $class_name ) {
   }
 
   $full_path .= $class_file;
-
   // Now we include the file.
   if ( file_exists( $full_path ) ) {
     require_once $full_path;

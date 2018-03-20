@@ -38,7 +38,7 @@ class Parsed_Content extends WP_UnitTestCase {
 
     $parser = new Admin\Parse();
 
-    $this->assertTrue( method_exists( $parser , 'parse_content_to_json' ) );
+    $this->assertTrue( method_exists( $parser, 'parse_content_to_json' ) );
   }
 
   /**

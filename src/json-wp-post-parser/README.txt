@@ -3,7 +3,7 @@ Contributors: dingo_bastard
 Tags: post, parser, content
 Requires at least: 4.4
 Tested up to: 4.9.4
-Stable tag: 1.0.6
+Stable tag: 1.0.7
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -66,19 +66,26 @@ When using post update to update all your posts, the default number of posts tha
 
 == Changelog ==
 
-= 1.0.0 =
-* Initial release
+= 1.0.7 =
+
+* Autoload fix
+
+= 1.0.6 =
+
+* Minor class fixes
 
 = 1.0.5 =
+
 * Linter fixes
 * Class name fixes
 
-= 1.0.6 =
-* Minor class fixes
+= 1.0.0 =
+
+* Initial release
 
 == Credits ==
 
-JSON post parser  is maintained and sponsored by
+JSON post parser is maintained and sponsored by
 [Infinum](https://www.infinum.co).
 
 <img src="https://infinum.co/infinum.png" width="264">

@@ -1,12 +1,12 @@
 {
   "name": "json-wp-post-parser",
   "description": "JSON Post Parser plugin parses your content and saves it as JSON available in REST posts and pages endpoints.",
-  "version": "1.0.0",
+  "version": "1.0.7",
   "author": "Infinum",
   "private": true,
   "main": "",
   "scripts": {
-    "precommit": "eslint src/skin/assets/scripts/*.js && stylelint \"src/skin/assets/styles/**/*.scss\" --syntax scss && phpcs --standard=Infinum src/",
+    "precommit": "eslint src/** && phpcs --standard=Infinum src/",
     "webpack": "webpack --progress",
     "build": "gulp build"
   },
@@ -20,8 +20,8 @@
     "css-loader": "^0.28.11",
     "del": "^3.0.0",
     "eslint": "^4.19.0",
+    "eslint-plugin-import": "^2.9.0",
     "extract-text-webpack-plugin": "^3.0.2",
-    "gulp-phpunit": "^0.25.0",
     "gulp-print": "^5.0.0",
     "node-sass": "^4.7.2",
     "run-sequence": "^2.2.1",
