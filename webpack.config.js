@@ -2,7 +2,7 @@ const path = require('path');
 
 const webpack = require('webpack');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const appPath = `${path.resolve(__dirname)}`;
 
@@ -21,53 +21,53 @@ const allModules = {
     {
       test: /\.(js|jsx)$/,
       use: 'babel-loader',
-      exclude: /node_modules/
+      exclude: /node_modules/,
     },
     {
       test: /\.json$/,
-      use: 'json-loader'
+      use: 'json-loader',
     },
     {
       test: /\.scss$/,
-      use: ExtractTextPlugin.extract({
-        fallback: 'style-loader',
-        use: ['css-loader', 'sass-loader']
-      })
-    }
-  ]
+      use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+    },
+  ],
 };
 
 const allPlugins = [
   new webpack.optimize.ModuleConcatenationPlugin(),
-  new ExtractTextPlugin(outputCss),
-  new webpack.optimize.UglifyJsPlugin({
-    output: {
-      comments: false,
-    },
-    compress: {
-      warnings: false,
-      drop_console: true, // eslint-disable-line camelcase
-    },
-    sourceMap: true,
-  }),
+  new MiniCssExtractPlugin(outputCss),
 ];
 
 module.exports = [
   {
     devServer: {
-      outputPath: path.join(__dirname, 'build')
+      outputPath: path.join(__dirname, 'build'),
     },
     entry: {
-      application: [pluginEntry]
+      application: [pluginEntry],
     },
     output: {
       path: pluginPublicPath,
       publicPath: '',
-      filename: outputJs
+      filename: outputJs,
     },
 
     module: allModules,
 
-    plugins: allPlugins
-  }
+    optimization: {
+      minimizer: [
+        new UglifyJSPlugin({
+          uglifyOptions: {
+            compress: false,
+            ecma: 6,
+            mangle: true,
+          },
+          sourceMap: true,
+        }),
+      ],
+    },
+
+    plugins: allPlugins,
+  },
 ];
