@@ -17,7 +17,7 @@
     "babel-eslint": "^8.2.2",
     "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.6.1",
-    "css-loader": "^0.28.11",
+    "css-loader": "^2.1.1",
     "del": "^3.0.0",
     "eslint": "^4.19.0",
     "eslint-plugin-import": "^2.9.0",
@@ -34,10 +34,10 @@
     "webpack-stream": "^4.0.2"
   },
   "dependencies": {
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.1",
     "jquery": "^3.3.1",
-    "npm": "^5.7.1",
-    "npm-check-updates": "^2.14.1"
+    "npm": "^6.9.0",
+    "npm-check-updates": "^3.1.8"
   },
   "browserslist": [
     "android >= 4.2",
